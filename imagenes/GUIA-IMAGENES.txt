@@ -1,0 +1,138 @@
+═══════════════════════════════════════════════════════════════════════
+  GUÍA DE IMÁGENES PARA DECORGLAM - Lista de archivos necesarios
+═══════════════════════════════════════════════════════════════════════
+
+📁 CARPETA: imagenes/
+
+NOTA: Todas las imágenes deben reflejar el estilo de DECORGLAM:
+- Minimalismo elegante
+- Tonos rosados, púrpuras y dorados
+- Alta calidad y resolución
+- Espacios lujosos y bien iluminados
+
+
+🎯 SECCIÓN HERO (Página principal)
+═══════════════════════════════════════════════════════════════════════
+📸 hero-principal.jpg
+   - Dimensiones recomendadas: 1920x1080px mínimo
+   - Descripción: Imagen impactante de un espacio de lujo decorado
+   - Estilo: Minimalista, amplio, con tonos cálidos
+   - Ejemplo: Sala de estar elegante, dormitorio de diseño, o espacio comercial
+
+
+🎨 SECCIÓN SERVICIOS (3 imágenes)
+═══════════════════════════════════════════════════════════════════════
+📸 servicio-consultoria.jpg
+   - Dimensiones: 800x800px (cuadrada)
+   - Descripción: Profesional trabajando con planos o cliente
+   - Alternativa: Mood board de diseño, paleta de colores
+
+📸 servicio-diseno-integral.jpg
+   - Dimensiones: 800x800px (cuadrada)
+   - Descripción: Vista de un proyecto completo de decoración
+   - Ejemplo: Antes/después, espacio terminado con todos los detalles
+
+📸 servicio-mobiliario.jpg
+   - Dimensiones: 800x800px (cuadrada)
+   - Descripción: Muebles elegantes, sillón de diseño, o showroom
+   - Estilo: Piezas de lujo, acabados premium
+
+
+🖼️ SECCIÓN GALERÍA (6-9 imágenes de proyectos)
+═══════════════════════════════════════════════════════════════════════
+📸 galeria-proyecto-01.jpg
+📸 galeria-proyecto-02.jpg
+📸 galeria-proyecto-03.jpg
+📸 galeria-proyecto-04.jpg
+📸 galeria-proyecto-05.jpg
+📸 galeria-proyecto-06.jpg
+   - Dimensiones: 1000x1000px cada una (cuadradas)
+   - Descripción: Portfolio de proyectos realizados
+   - Variedad: Salas, dormitorios, comedores, oficinas, etc.
+   - Calidad: Fotografía profesional con buena iluminación
+
+
+👥 SECCIÓN NOSOTROS
+═══════════════════════════════════════════════════════════════════════
+📸 nosotros-equipo.jpg
+   - Dimensiones: 1200x800px
+   - Descripción: Foto del equipo, fundadores o espacio de trabajo
+   - Estilo: Profesional pero cálido y acogedor
+
+
+📞 SECCIÓN CONTACTO (opcional)
+═══════════════════════════════════════════════════════════════════════
+📸 contacto-oficina.jpg
+   - Dimensiones: 1200x800px
+   - Descripción: Oficina, showroom o espacio de atención al cliente
+   - Uso: Fondo decorativo para la sección de contacto
+
+
+🎨 ELEMENTOS DECORATIVOS (opcional pero recomendado)
+═══════════════════════════════════════════════════════════════════════
+📸 textura-marmol.jpg
+   - Para fondos elegantes en secciones específicas
+
+📸 patron-geometrico.png
+   - Patrón sutil para fondos con transparencia
+
+📸 detalle-dorado.png
+   - Elemento decorativo con transparencia (PNG)
+
+
+📱 FAVICON Y LOGO
+═══════════════════════════════════════════════════════════════════════
+📸 favicon.png
+   - Dimensiones: 512x512px
+   - Descripción: Icono/logo simple de DECORGLAM
+   - Formato: PNG con fondo transparente
+
+📸 logo-completo.png
+   - Dimensiones: 2000x600px
+   - Descripción: Logo completo con nombre (alternativa al texto)
+   - Formato: PNG con fondo transparente
+
+
+═══════════════════════════════════════════════════════════════════════
+💡 CONSEJOS PARA SELECCIONAR IMÁGENES:
+═══════════════════════════════════════════════════════════════════════
+
+✅ HACER:
+• Usar imágenes de alta resolución (mínimo 1000px de ancho)
+• Mantener coherencia en el estilo fotográfico
+• Preferir tonos cálidos: rosas, beiges, dorados, púrpuras suaves
+• Mostrar espacios bien iluminados y amplios
+• Usar fotografía profesional siempre que sea posible
+
+❌ EVITAR:
+• Imágenes pixeladas o de baja calidad
+• Espacios oscuros o mal iluminados
+• Estilos contradictorios (muy moderno vs muy clásico)
+• Colores muy saturados o neón
+• Marcas de agua visibles
+
+
+🌐 FUENTES RECOMENDADAS DE IMÁGENES GRATUITAS:
+═══════════════════════════════════════════════════════════════════════
+• Unsplash.com (buscar: "luxury interior", "elegant room", "minimalist decor")
+• Pexels.com (buscar: "modern living room", "elegant bedroom")
+• Pixabay.com (buscar: "interior design", "luxury home")
+
+
+📝 PALABRAS CLAVE PARA BUSCAR:
+═══════════════════════════════════════════════════════════════════════
+- luxury interior design
+- elegant living room
+- minimalist bedroom
+- modern home decor
+- sophisticated interior
+- pink and gold interior
+- purple luxury room
+- champagne color decor
+- boutique hotel interior
+
+
+═══════════════════════════════════════════════════════════════════════
+  ¡Una vez que tengas las imágenes, guárdalas con estos nombres exactos
+  en la carpeta "imagenes" para que funcionen automáticamente!
+═══════════════════════════════════════════════════════════════════════
