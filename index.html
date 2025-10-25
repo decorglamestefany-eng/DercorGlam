@@ -3,17 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DECORGLAM - Minimalismo Elegante</title>
+    <meta name="description" content="DECORGLAM - Diseño de interiores de lujo, eventos elegantes y celebraciones memorables">
+    <meta name="keywords" content="decoración, diseño interior, eventos, baby shower, cumpleaños">
+    <title>DECORGLAM - Diseño de Interiores de Lujo</title>
     
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Tailwind CSS Configuration -->
     <script>
         tailwind.config = {
             theme: {
@@ -22,7 +20,8 @@
                         'custom-primary': '#F8C8D2',
                         'custom-white': '#FCFCFB',
                         'custom-dark': '#4C286C',
-                        'custom-gold': '#D4AF37'
+                        'custom-gold': '#D4AF37',
+                        'custom-light': '#F5E6EB'
                     },
                     fontFamily: {
                         'playfair': ['"Playfair Display"', 'serif'],
@@ -34,12 +33,10 @@
     </script>
     
     <style>
-        /* Estilos adicionales para animaciones suaves */
         * {
             scroll-behavior: smooth;
         }
         
-        /* Overlay del menú */
         .menu-overlay {
             transform: translateX(100%);
             transition: transform 0.3s ease-in-out;
@@ -49,7 +46,6 @@
             transform: translateX(0);
         }
         
-        /* Animación del botón CTA */
         .cta-button {
             transition: all 0.3s ease;
         }
@@ -59,7 +55,6 @@
             box-shadow: 0 10px 25px rgba(72, 40, 108, 0.2);
         }
         
-        /* Degradado para el logo DECORGLAM */
         .logo-gradient {
             background: linear-gradient(90deg, #F8C8D2 0%, #E5A0B8 25%, #C8789E 50%, #9A5580 75%, #4C286C 100%);
             -webkit-background-clip: text;
@@ -67,7 +62,6 @@
             background-clip: text;
         }
         
-        /* Degradado claro para footer */
         .logo-gradient-light {
             background: linear-gradient(90deg, #F8C8D2 0%, #FFD700 50%, #FFFFFF 100%);
             -webkit-background-clip: text;
@@ -75,13 +69,54 @@
             background-clip: text;
         }
         
-        /* Ocultar scrollbar pero mantener funcionalidad */
         .scrollbar-hide::-webkit-scrollbar {
             display: none;
         }
         .scrollbar-hide {
             -ms-overflow-style: none;
             scrollbar-width: none;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.6s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .pulse-dot {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        /* Estilo para texto con sombra sobre imagen de fondo */
+        .hero-text {
+            text-shadow: 
+                2px 2px 4px rgba(0, 0, 0, 0.3),
+                -2px -2px 4px rgba(255, 255, 255, 0.1),
+                0 0 20px rgba(212, 175, 55, 0.2);
+        }
+
+        .hero-subtitle {
+            text-shadow: 
+                1px 1px 3px rgba(0, 0, 0, 0.4),
+                0 0 10px rgba(248, 200, 210, 0.15);
         }
     </style>
 </head>
@@ -90,13 +125,31 @@
     <!-- Header Fijo Superior -->
     <header class="fixed top-0 left-0 right-0 bg-custom-white shadow-sm z-50">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <!-- Logo -->
-            <h1 class="font-playfair text-2xl md:text-3xl font-bold logo-gradient">
+            <a href="index.html" class="font-playfair text-2xl md:text-3xl font-bold logo-gradient hover:opacity-80 transition">
                 DECOЯGLAM
-            </h1>
+            </a>
             
-            <!-- Menú Hamburguesa (solo visible en móvil) -->
-            <button id="menuToggle" class="focus:outline-none z-50" aria-label="Menú">
+            <!-- Menú Desktop -->
+            <nav class="hidden md:flex space-x-8">
+                <a href="index.html" class="font-montserrat text-sm font-semibold text-custom-dark hover:text-custom-primary transition">Inicio</a>
+                <a href="servicios.html" class="font-montserrat text-sm font-semibold text-custom-dark hover:text-custom-primary transition">Servicios</a>
+                <a href="galeria.html" class="font-montserrat text-sm font-semibold text-custom-dark hover:text-custom-primary transition">Galería</a>
+                <a href="blog.html" class="font-montserrat text-sm font-semibold text-custom-dark hover:text-custom-primary transition">Blog</a>
+                <a href="contacto.html" class="font-montserrat text-sm font-semibold text-custom-dark hover:text-custom-primary transition">Contacto</a>
+            </nav>
+            
+            <!-- Botón Carrito -->
+            <div class="hidden md:flex items-center space-x-4">
+                <a href="carrito.html" class="relative">
+                    <svg class="w-6 h-6 text-custom-dark hover:text-custom-primary transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                    </svg>
+                    <span id="cart-count" class="absolute -top-2 -right-2 bg-custom-primary text-custom-dark text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center hidden">0</span>
+                </a>
+            </div>
+            
+            <!-- Menú Hamburguesa -->
+            <button id="menuToggle" class="md:hidden focus:outline-none" aria-label="Menú">
                 <svg class="w-8 h-8 text-custom-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                 </svg>
@@ -104,751 +157,272 @@
         </div>
     </header>
     
-    <!-- Overlay de Navegación -->
+    <!-- Overlay de Navegación Móvil -->
     <nav id="menuOverlay" class="menu-overlay fixed inset-0 bg-custom-white z-40 flex items-center justify-center">
-        <div class="text-center">
-            <!-- Botón Cerrar -->
-            <button id="menuClose" class="absolute top-6 right-6 focus:outline-none">
-                <svg class="w-8 h-8 text-custom-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                </svg>
-            </button>
-            
-            <!-- Enlaces de Navegación -->
-            <ul class="space-y-8">
-                <li>
-                    <a href="#inicio" class="font-playfair text-3xl md:text-4xl text-custom-dark hover:text-custom-gold transition-colors duration-300">
-                        Inicio
-                    </a>
-                </li>
-                <li>
-                    <a href="#servicios" class="font-playfair text-3xl md:text-4xl text-custom-dark hover:text-custom-gold transition-colors duration-300">
-                        Servicios
-                    </a>
-                </li>
-                <li>
-                    <a href="#galeria" class="font-playfair text-3xl md:text-4xl text-custom-dark hover:text-custom-gold transition-colors duration-300">
-                        Galería
-                    </a>
-                </li>
-                <li>
-                    <a href="#nosotros" class="font-playfair text-3xl md:text-4xl text-custom-dark hover:text-custom-gold transition-colors duration-300">
-                        Nosotros
-                    </a>
-                </li>
-                <li>
-                    <a href="#contacto" class="font-playfair text-3xl md:text-4xl text-custom-dark hover:text-custom-gold transition-colors duration-300">
-                        Contacto
-                    </a>
-                </li>
-            </ul>
-        </div>
+        <button id="menuClose" class="absolute top-6 right-6 focus:outline-none">
+            <svg class="w-8 h-8 text-custom-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+        
+        <ul class="space-y-8 text-center">
+            <li><a href="index.html" class="font-playfair text-3xl text-custom-dark hover:text-custom-gold transition">Inicio</a></li>
+            <li><a href="servicios.html" class="font-playfair text-3xl text-custom-dark hover:text-custom-gold transition">Servicios</a></li>
+            <li><a href="galeria.html" class="font-playfair text-3xl text-custom-dark hover:text-custom-gold transition">Galería</a></li>
+            <li><a href="blog.html" class="font-playfair text-3xl text-custom-dark hover:text-custom-gold transition">Blog</a></li>
+            <li><a href="contacto.html" class="font-playfair text-3xl text-custom-dark hover:text-custom-gold transition">Contacto</a></li>
+            <li><a href="carrito.html" class="font-playfair text-3xl text-custom-dark hover:text-custom-gold transition">Carrito</a></li>
+        </ul>
     </nav>
     
-    <!-- Contenido Principal -->
-    <main class="pt-20">
+    <main class="pt-0">
         
         <!-- Hero Section -->
-        <section id="inicio" class="min-h-screen flex items-center justify-center px-4 py-16 md:py-24 relative overflow-hidden">
-            <!-- Fondo con degradado elegante -->
-            <div class="absolute inset-0 bg-gradient-to-br from-custom-white via-custom-primary/10 to-custom-dark/5 -z-10"></div>
+        <section id="hero" class="min-h-screen flex items-center justify-center px-4 py-16 md:py-24 relative overflow-hidden">
+            <img src="imagenes/hero-principal.png" alt="Diseño elegante de interiores" class="absolute inset-0 w-full h-full object-cover -z-10 brightness-75">
             
-            <!-- Imagen de fondo (comentada hasta que agregues la imagen) -->
-            <!-- <img src="imagenes/hero-principal.jpg" alt="DECORGLAM Interior" class="absolute inset-0 w-full h-full object-cover opacity-20 -z-10"> -->
-            
-            <div class="container mx-auto max-w-4xl text-center relative z-10">
-                <!-- Espacio en blanco superior para elegancia -->
+            <div class="container mx-auto max-w-4xl text-center relative z-10 fade-in">
                 <div class="mb-12"></div>
                 
-                <!-- Elemento decorativo superior -->
                 <div class="flex justify-center items-center gap-3 mb-8">
                     <div class="w-12 h-0.5 bg-custom-primary"></div>
-                    <div class="w-2 h-2 bg-custom-gold rounded-full"></div>
+                    <div class="w-2 h-2 bg-custom-gold rounded-full pulse-dot"></div>
                     <div class="w-12 h-0.5 bg-custom-primary"></div>
                 </div>
                 
-                <!-- Titular Principal -->
-                <h2 class="font-playfair text-4xl md:text-6xl lg:text-7xl font-bold text-custom-dark mb-8 leading-tight">
+                <h2 class="font-playfair text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-8 leading-tight hero-text">
                     Transformamos Espacios en
-                    <span class="text-custom-gold block mt-2">Experiencias de Lujo</span>
+                    <span class="text-custom-gold block mt-2">Experiencias Inolvidables</span>
                 </h2>
                 
-                <!-- Subtítulo -->
-                <p class="font-montserrat text-lg md:text-xl text-custom-dark opacity-80 mb-12 leading-relaxed max-w-2xl mx-auto">
-                    Diseño de interiores de alta gama que refleja tu esencia única. Minimalismo elegante con impacto visual incomparable.
+                <p class="font-montserrat text-lg md:text-xl text-white opacity-95 mb-12 leading-relaxed max-w-2xl mx-auto hero-subtitle">
+                    Diseño de interiores de alta gama para eventos memorables. Desde celebraciones íntimas hasta corporativas, hacemos realidad tu visión.
                 </p>
                 
-                <!-- Línea decorativa elegante -->
                 <div class="flex justify-center items-center gap-2 mb-8">
                     <div class="w-8 h-0.5 bg-custom-primary"></div>
                     <div class="w-8 h-0.5 bg-custom-gold"></div>
                     <div class="w-8 h-0.5 bg-custom-dark"></div>
                 </div>
                 
-                <!-- Botón secundario CTA -->
-                <a href="#servicios" class="inline-block border-2 border-custom-dark text-custom-dark font-montserrat font-semibold px-8 py-3 rounded-full hover:bg-custom-dark hover:text-custom-white transition-all duration-300">
-                    Descubre Nuestros Servicios
-                </a>
+                <div class="flex flex-col md:flex-row gap-4 justify-center">
+                    <a href="servicios.html" class="inline-block bg-custom-primary text-custom-dark font-montserrat font-semibold px-8 py-3 rounded-full hover:bg-custom-gold transition-all duration-300 shadow-lg hover:shadow-xl">
+                        Explorar Servicios
+                    </a>
+                    <a href="contacto.html" class="inline-block bg-white text-custom-dark font-montserrat font-semibold px-8 py-3 rounded-full hover:bg-custom-primary transition-all duration-300 shadow-lg hover:shadow-xl border-2 border-white">
+                        Solicitar Cotización
+                    </a>
+                </div>
                 
-                <!-- Espacio en blanco inferior -->
                 <div class="mb-12"></div>
             </div>
         </section>
         
-        <!-- Sección de Servicios -->
-        <section id="servicios" class="min-h-screen px-4 py-20 bg-gradient-to-b from-white to-custom-white">
+        <!-- Sección de Categorías Rápidas -->
+        <section class="py-16 md:py-24 px-4 bg-gradient-to-b from-custom-white to-custom-light">
             <div class="container mx-auto max-w-6xl">
-                <!-- Título -->
-                <h3 class="font-playfair text-3xl md:text-5xl font-bold text-custom-dark text-center mb-6">
-                    Nuestros Servicios
+                <h3 class="font-playfair text-3xl md:text-5xl font-bold text-custom-dark text-center mb-16">
+                    Tipos de Eventos
                 </h3>
                 
-                <!-- Línea decorativa elegante -->
-                <div class="flex justify-center items-center gap-2 mb-16">
-                    <div class="w-16 h-0.5 bg-custom-primary"></div>
-                    <div class="w-2 h-2 bg-custom-gold rounded-full"></div>
-                    <div class="w-16 h-0.5 bg-custom-primary"></div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <a href="servicios.html#baby-shower" class="group relative block aspect-square overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition transform hover:scale-105">
+                        <img src="imagenes/categoria-baby-shower.jpg" alt="Baby Shower" class="absolute inset-0 w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition"></div>
+                        <div class="relative flex items-center justify-center h-full">
+                            <div class="text-center text-white">
+                                <p class="font-playfair text-4xl font-bold mb-2">👶</p>
+                                <h4 class="font-playfair text-2xl font-bold">Baby Shower</h4>
+                            </div>
+                        </div>
+                    </a>
+                    
+                    <a href="servicios.html#cumple-infantil" class="group relative block aspect-square overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition transform hover:scale-105">
+                        <img src="imagenes/categoria-cumpleanos.jpg" alt="Cumpleaños Infantil" class="absolute inset-0 w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition"></div>
+                        <div class="relative flex items-center justify-center h-full">
+                            <div class="text-center text-white">
+                                <p class="font-playfair text-4xl font-bold mb-2">🎂</p>
+                                <h4 class="font-playfair text-2xl font-bold">Cumpleaños Infantil</h4>
+                            </div>
+                        </div>
+                    </a>
+                    
+                    <a href="servicios.html#eventos-adultos" class="group relative block aspect-square overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition transform hover:scale-105">
+                        <img src="imagenes/categoria-adultos.jpg" alt="Eventos Adultos" class="absolute inset-0 w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition"></div>
+                        <div class="relative flex items-center justify-center h-full">
+                            <div class="text-center text-white">
+                                <p class="font-playfair text-4xl font-bold mb-2">🍾</p>
+                                <h4 class="font-playfair text-2xl font-bold">Eventos Adultos</h4>
+                            </div>
+                        </div>
+                    </a>
+                    
+                    <a href="servicios.html#eventos-vip" class="group relative block aspect-square overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition transform hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-br from-custom-primary/80 to-custom-gold/80"></div>
+                        <div class="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition"></div>
+                        <div class="relative flex items-center justify-center h-full">
+                            <div class="text-center text-white">
+                                <p class="font-playfair text-4xl font-bold mb-2"></p>
+                                <h4 class="font-playfair text-2xl font-bold">Eventos VIP</h4>
+                            </div>
+                        </div>
+                    </a>
                 </div>
+            </div>
+        </section>
+        
+        <!-- Sección de Por qué Elegirnos -->
+        <section class="py-16 md:py-24 px-4">
+            <div class="container mx-auto max-w-6xl">
+                <h3 class="font-playfair text-3xl md:text-5xl font-bold text-custom-dark text-center mb-16">
+                    ¿Por qué elegirnos?
+                </h3>
                 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <!-- Servicio 1 -->
-                    <div class="text-center p-8 rounded-2xl bg-white shadow-lg hover:shadow-2xl transition-all duration-300 border border-custom-primary/20 hover:border-custom-primary/50 group">
-                        <!-- Imagen del servicio (comentada hasta agregar imagen) -->
-                        <!-- <img src="imagenes/servicio-consultoria.jpg" alt="Consultoría" class="w-full h-48 object-cover rounded-xl mb-6"> -->
-                        
-                        <!-- Icono decorativo -->
-                        <div class="w-20 h-20 bg-gradient-to-br from-custom-primary to-custom-gold rounded-full mx-auto mb-6 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                            <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                    <div class="text-center p-8 rounded-2xl bg-white shadow-lg hover:shadow-2xl transition border border-custom-primary/20">
+                        <div class="w-16 h-16 bg-gradient-to-br from-custom-primary to-custom-gold rounded-full mx-auto mb-6 flex items-center justify-center">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
                             </svg>
                         </div>
-                        
-                        <h4 class="font-playfair text-2xl font-semibold text-custom-dark mb-4">
-                            Consultoría de Diseño
-                        </h4>
-                        <p class="font-montserrat text-custom-dark opacity-70 leading-relaxed">
-                            Análisis personalizado de tu espacio y visión para crear el ambiente perfecto que refleje tu estilo único.
-                        </p>
+                        <h4 class="font-playfair text-2xl font-bold text-custom-dark mb-4">Diseño Personalizado</h4>
+                        <p class="font-montserrat text-custom-dark opacity-70">Cada proyecto es único, adaptado a tu visión y presupuesto.</p>
                     </div>
                     
-                    <!-- Servicio 2 -->
-                    <div class="text-center p-8 rounded-2xl bg-white shadow-lg hover:shadow-2xl transition-all duration-300 border border-custom-primary/20 hover:border-custom-primary/50 group">
-                        <!-- <img src="imagenes/servicio-diseno-integral.jpg" alt="Diseño Integral" class="w-full h-48 object-cover rounded-xl mb-6"> -->
-                        
-                        <div class="w-20 h-20 bg-gradient-to-br from-custom-gold to-custom-dark rounded-full mx-auto mb-6 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                            <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h4a1 1 0 011 1v7a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM14 5a1 1 0 011-1h4a1 1 0 011 1v7a1 1 0 01-1 1h-4a1 1 0 01-1-1V5zM4 16a1 1 0 011-1h4a1 1 0 011 1v3a1 1 0 01-1 1H5a1 1 0 01-1-1v-3zM14 16a1 1 0 011-1h4a1 1 0 011 1v3a1 1 0 01-1 1h-4a1 1 0 01-1-1v-3z"></path>
+                    <div class="text-center p-8 rounded-2xl bg-white shadow-lg hover:shadow-2xl transition border border-custom-gold/20">
+                        <div class="w-16 h-16 bg-gradient-to-br from-custom-gold to-custom-dark rounded-full mx-auto mb-6 flex items-center justify-center">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                             </svg>
                         </div>
-                        
-                        <h4 class="font-playfair text-2xl font-semibold text-custom-dark mb-4">
-                            Diseño Integral
-                        </h4>
-                        <p class="font-montserrat text-custom-dark opacity-70 leading-relaxed">
-                            Proyectos completos de decoración con atención meticulosa a cada detalle de tu espacio.
-                        </p>
+                        <h4 class="font-playfair text-2xl font-bold text-custom-dark mb-4">Presupuesto Flexible</h4>
+                        <p class="font-montserrat text-custom-dark opacity-70">Opciones para todos los presupuestos sin comprometer la calidad.</p>
                     </div>
                     
-                    <!-- Servicio 3 -->
-                    <div class="text-center p-8 rounded-2xl bg-white shadow-lg hover:shadow-2xl transition-all duration-300 border border-custom-primary/20 hover:border-custom-primary/50 group">
-                        <!-- <img src="imagenes/servicio-mobiliario.jpg" alt="Mobiliario" class="w-full h-48 object-cover rounded-xl mb-6"> -->
-                        
-                        <div class="w-20 h-20 bg-gradient-to-br from-custom-dark to-custom-primary rounded-full mx-auto mb-6 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                            <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
+                    <div class="text-center p-8 rounded-2xl bg-white shadow-lg hover:shadow-2xl transition border border-custom-dark/20">
+                        <div class="w-16 h-16 bg-gradient-to-br from-custom-dark to-custom-primary rounded-full mx-auto mb-6 flex items-center justify-center">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                             </svg>
                         </div>
-                        
-                        <h4 class="font-playfair text-2xl font-semibold text-custom-dark mb-4">
-                            Selección de Mobiliario
-                        </h4>
-                        <p class="font-montserrat text-custom-dark opacity-70 leading-relaxed">
-                            Curación experta de piezas exclusivas que complementan perfectamente tu estilo único.
-                        </p>
+                        <h4 class="font-playfair text-2xl font-bold text-custom-dark mb-4">5+Años Experiencia</h4>
+                        <p class="font-montserrat text-custom-dark opacity-70">Confianza y profesionalismo garantizados en cada proyecto.</p>
                     </div>
                 </div>
             </div>
         </section>
         
-        <!-- Sección Galería -->
-        <section id="galeria" class="min-h-screen px-4 py-20 bg-gradient-to-b from-custom-white to-white">
+        <!-- Testimonios -->
+        <section class="py-16 md:py-24 px-4 bg-custom-light">
             <div class="container mx-auto max-w-6xl">
-                <!-- Título -->
-                <h3 class="font-playfair text-3xl md:text-5xl font-bold text-custom-dark text-center mb-6">
-                    Galería de Proyectos
+                <h3 class="font-playfair text-3xl md:text-5xl font-bold text-custom-dark text-center mb-16">
+                    Lo que dicen nuestros clientes
                 </h3>
                 
-                <p class="font-montserrat text-center text-custom-dark opacity-70 mb-8 max-w-2xl mx-auto">
-                    Explora nuestra colección de espacios transformados con elegancia y sofisticación
-                </p>
-                
-                <!-- Línea decorativa elegante -->
-                <div class="flex justify-center items-center gap-2 mb-16">
-                    <div class="w-2 h-2 bg-custom-gold rounded-full"></div>
-                    <div class="w-20 h-0.5 bg-custom-dark"></div>
-                    <div class="w-2 h-2 bg-custom-gold rounded-full"></div>
-                </div>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <!-- Proyecto 1 -->
-                    <div class="aspect-square rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group relative border-2 border-transparent hover:border-custom-primary">
-                        <!-- <img src="imagenes/galeria-proyecto-01.jpg" alt="Proyecto 1" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"> -->
-                        <div class="w-full h-full bg-gradient-to-br from-custom-primary/30 to-custom-gold/20 flex items-center justify-center">
-                            <span class="font-playfair text-2xl text-custom-dark opacity-50">Proyecto 1</span>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-white p-8 rounded-2xl shadow-lg border-l-4 border-custom-primary">
+                        <div class="flex text-custom-gold mb-4">
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26l6.91.75l-5 4.87l1.18 6.88L12 18.25l-6.18 3.25l1.18-6.88l-5-4.87l6.91-.75L12 2z"/></svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26l6.91.75l-5 4.87l1.18 6.88L12 18.25l-6.18 3.25l1.18-6.88l-5-4.87l6.91-.75L12 2z"/></svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26l6.91.75l-5 4.87l1.18 6.88L12 18.25l-6.18 3.25l1.18-6.88l-5-4.87l6.91-.75L12 2z"/></svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26l6.91.75l-5 4.87l1.18 6.88L12 18.25l-6.18 3.25l1.18-6.88l-5-4.87l6.91-.75L12 2z"/></svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26l6.91.75l-5 4.87l1.18 6.88L12 18.25l-6.18 3.25l1.18-6.88l-5-4.87l6.91-.75L12 2z"/></svg>
                         </div>
-                        <div class="absolute inset-0 bg-custom-dark/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <p class="font-playfair text-white text-xl">Ver Proyecto</p>
-                        </div>
+                        <p class="font-montserrat text-custom-dark opacity-80 mb-4 italic">"Superaron todas mis expectativas. El diseño fue elegante y el servicio impecable."</p>
+                        <p class="font-playfair font-bold text-custom-dark">Nataly J.</p>
+                        <p class="font-montserrat text-sm text-custom-dark opacity-60">Baby Shower</p>
                     </div>
                     
-                    <!-- Proyecto 2 -->
-                    <div class="aspect-square rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group relative border-2 border-transparent hover:border-custom-gold">
-                        <div class="w-full h-full bg-gradient-to-br from-custom-gold/30 to-custom-dark/20 flex items-center justify-center">
-                            <span class="font-playfair text-2xl text-custom-dark opacity-50">Proyecto 2</span>
+                    <div class="bg-white p-8 rounded-2xl shadow-lg border-l-4 border-custom-gold">
+                        <div class="flex text-custom-gold mb-4">
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26l6.91.75l-5 4.87l1.18 6.88L12 18.25l-6.18 3.25l1.18-6.88l-5-4.87l6.91-.75L12 2z"/></svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26l6.91.75l-5 4.87l1.18 6.88L12 18.25l-6.18 3.25l1.18-6.88l-5-4.87l6.91-.75L12 2z"/></svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26l6.91.75l-5 4.87l1.18 6.88L12 18.25l-6.18 3.25l1.18-6.88l-5-4.87l6.91-.75L12 2z"/></svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26l6.91.75l-5 4.87l1.18 6.88L12 18.25l-6.18 3.25l1.18-6.88l-5-4.87l6.91-.75L12 2z"/></svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26l6.91.75l-5 4.87l1.18 6.88L12 18.25l-6.18 3.25l1.18-6.88l-5-4.87l6.91-.75L12 2z"/></svg>
                         </div>
-                        <div class="absolute inset-0 bg-custom-dark/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <p class="font-playfair text-white text-xl">Ver Proyecto</p>
-                        </div>
+                        <p class="font-montserrat text-custom-dark opacity-80 mb-4 italic">"Mi hijo amó la decoración. Fue exactamente como imaginamos y más."</p>
+                        <p class="font-playfair font-bold text-custom-dark">Isabel M.</p>
+                        <p class="font-montserrat text-sm text-custom-dark opacity-60">Cumpleaños Infantil</p>
                     </div>
                     
-                    <!-- Proyecto 3 -->
-                    <div class="aspect-square rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group relative border-2 border-transparent hover:border-custom-dark">
-                        <div class="w-full h-full bg-gradient-to-br from-custom-dark/30 to-custom-primary/20 flex items-center justify-center">
-                            <span class="font-playfair text-2xl text-custom-dark opacity-50">Proyecto 3</span>
+                    <div class="bg-white p-8 rounded-2xl shadow-lg border-l-4 border-custom-dark">
+                        <div class="flex text-custom-gold mb-4">
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26l6.91.75l-5 4.87l1.18 6.88L12 18.25l-6.18 3.25l1.18-6.88l-5-4.87l6.91-.75L12 2z"/></svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26l6.91.75l-5 4.87l1.18 6.88L12 18.25l-6.18 3.25l1.18-6.88l-5-4.87l6.91-.75L12 2z"/></svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26l6.91.75l-5 4.87l1.18 6.88L12 18.25l-6.18 3.25l1.18-6.88l-5-4.87l6.91-.75L12 2z"/></svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26l6.91.75l-5 4.87l1.18 6.88L12 18.25l-6.18 3.25l1.18-6.88l-5-4.87l6.91-.75L12 2z"/></svg>
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26l6.91.75l-5 4.87l1.18 6.88L12 18.25l-6.18 3.25l1.18-6.88l-5-4.87l6.91-.75L12 2z"/></svg>
                         </div>
-                        <div class="absolute inset-0 bg-custom-dark/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <p class="font-playfair text-white text-xl">Ver Proyecto</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Proyecto 4 -->
-                    <div class="aspect-square rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group relative border-2 border-transparent hover:border-custom-primary">
-                        <div class="w-full h-full bg-gradient-to-br from-custom-primary/40 to-custom-dark/30 flex items-center justify-center">
-                            <span class="font-playfair text-2xl text-custom-dark opacity-50">Proyecto 4</span>
-                        </div>
-                        <div class="absolute inset-0 bg-custom-dark/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <p class="font-playfair text-white text-xl">Ver Proyecto</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Proyecto 5 -->
-                    <div class="aspect-square rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group relative border-2 border-transparent hover:border-custom-gold">
-                        <div class="w-full h-full bg-gradient-to-br from-custom-gold/40 to-custom-primary/30 flex items-center justify-center">
-                            <span class="font-playfair text-2xl text-custom-dark opacity-50">Proyecto 5</span>
-                        </div>
-                        <div class="absolute inset-0 bg-custom-dark/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <p class="font-playfair text-white text-xl">Ver Proyecto</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Proyecto 6 -->
-                    <div class="aspect-square rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group relative border-2 border-transparent hover:border-custom-dark">
-                        <div class="w-full h-full bg-gradient-to-br from-custom-dark/40 to-custom-gold/30 flex items-center justify-center">
-                            <span class="font-playfair text-2xl text-custom-dark opacity-50">Proyecto 6</span>
-                        </div>
-                        <div class="absolute inset-0 bg-custom-dark/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                            <p class="font-playfair text-white text-xl">Ver Proyecto</p>
-                        </div>
+                        <p class="font-montserrat text-custom-dark opacity-80 mb-4 italic">"Profesionales de verdad. Mi evento corporativo fue un éxito total."</p>
+                        <p class="font-playfair font-bold text-custom-dark">Caja Huancayo.</p>
+                        <p class="font-montserrat text-sm text-custom-dark opacity-60">Evento Corporativo</p>
                     </div>
                 </div>
             </div>
         </section>
-        
-        <!-- Sección Testimonios -->
-        <section class="py-16 md:py-24 bg-custom-white">
-            <div class="container mx-auto px-4 max-w-6xl">
-
-                <h2 class="font-playfair text-3xl md:text-5xl font-bold text-custom-dark text-center mb-6">
-                    Elogios de Clientes Distinguidos
-                </h2>
-
-                <div class="flex justify-center items-center gap-2 mb-16">
-                    <div class="w-16 h-0.5 bg-custom-primary"></div>
-                    <div class="w-2 h-2 bg-custom-gold rounded-full"></div>
-                    <div class="w-16 h-0.5 bg-custom-primary"></div>
-                </div>
-
-                <div class="relative">
-                    
-                    <div id="testimonial-carousel" class="flex overflow-x-scroll snap-x snap-mandatory space-x-8 pb-4 scrollbar-hide">
-
-                        <div class="flex-shrink-0 w-full md:w-1/3 snap-center bg-white border-2 border-custom-primary/20 p-8 rounded-2xl shadow-lg hover:shadow-2xl hover:border-custom-primary/50 transition duration-300">
-                            <div class="flex justify-between items-start mb-4">
-                                <svg class="w-10 h-10 text-custom-gold opacity-70" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M11 6C11 3.791 9.209 2 7 2C4.791 2 3 3.791 3 6V13C3 15.209 4.791 17 7 17H11V21L15 17H17C19.209 17 21 15.209 21 13V6H11ZM11 15H7C5.895 15 5 14.105 5 13V6C5 4.895 5.895 4 7 4C8.105 4 9 4.895 9 6V11H11V15Z"/>
-                                </svg>
-                                
-                                <div class="flex text-custom-gold">
-                                    <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26l6.91.75l-5 4.87l1.18 6.88L12 18.25l-6.18 3.25l1.18-6.88l-5-4.87l6.91-.75L12 2z"/></svg>
-                                    <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26l6.91.75l-5 4.87l1.18 6.88L12 18.25l-6.18 3.25l1.18-6.88l-5-4.87l6.91-.75L12 2z"/></svg>
-                                    <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26l6.91.75l-5 4.87l1.18 6.88L12 18.25l-6.18 3.25l1.18-6.88l-5-4.87l6.91-.75L12 2z"/></svg>
-                                    <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26l6.91.75l-5 4.87l1.18 6.88L12 18.25l-6.18 3.25l1.18-6.88l-5-4.87l6.91-.75L12 2z"/></svg>
-                                    <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26l6.91.75l-5 4.87l1.18 6.88L12 18.25l-6.18 3.25l1.18-6.88l-5-4.87l6.91-.75L12 2z"/></svg>
-                                </div>
-                            </div>
-                            
-                            <p class="font-montserrat text-lg italic text-custom-dark opacity-80 mb-6 leading-relaxed">
-                                "El diseño superó mis expectativas. Mi espacio fue transformado en algo absolutamente glamuroso y la atención al detalle fue exquisita. ¡Servicio de alta gama!"
-                            </p>
-                            
-                            <p class="font-playfair font-bold text-custom-dark text-lg">
-                                Elena R.
-                            </p>
-                            <p class="font-montserrat text-sm text-custom-dark opacity-60">
-                                Cliente - Diseño Residencial
-                            </p>
-                        </div>
-
-                        <div class="flex-shrink-0 w-full md:w-1/3 snap-center bg-white border-2 border-custom-primary/20 p-8 rounded-2xl shadow-lg hover:shadow-2xl hover:border-custom-primary/50 transition duration-300">
-                            <div class="flex justify-between items-start mb-4">
-                                <svg class="w-10 h-10 text-custom-gold opacity-70" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M11 6C11 3.791 9.209 2 7 2C4.791 2 3 3.791 3 6V13C3 15.209 4.791 17 7 17H11V21L15 17H17C19.209 17 21 15.209 21 13V6H11ZM11 15H7C5.895 15 5 14.105 5 13V6C5 4.895 5.895 4 7 4C8.105 4 9 4.895 9 6V11H11V15Z"/>
-                                </svg>
-                                <div class="flex text-custom-gold">
-                                    <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26l6.91.75l-5 4.87l1.18 6.88L12 18.25l-6.18 3.25l1.18-6.88l-5-4.87l6.91-.75L12 2z"/></svg>
-                                    <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26l6.91.75l-5 4.87l1.18 6.88L12 18.25l-6.18 3.25l1.18-6.88l-5-4.87l6.91-.75L12 2z"/></svg>
-                                    <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26l6.91.75l-5 4.87l1.18 6.88L12 18.25l-6.18 3.25l1.18-6.88l-5-4.87l6.91-.75L12 2z"/></svg>
-                                    <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26l6.91.75l-5 4.87l1.18 6.88L12 18.25l-6.18 3.25l1.18-6.88l-5-4.87l6.91-.75L12 2z"/></svg>
-                                    <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26l6.91.75l-5 4.87l1.18 6.88L12 18.25l-6.18 3.25l1.18-6.88l-5-4.87l6.91-.75L12 2z"/></svg>
-                                </div>
-                            </div>
-                            
-                            <p class="font-montserrat text-lg italic text-custom-dark opacity-80 mb-6 leading-relaxed">
-                                "El proceso de diseño a medida fue muy profesional y claro. Lograron capturar exactamente la visión elegante que quería para mi hogar."
-                            </p>
-                            
-                            <p class="font-playfair font-bold text-custom-dark text-lg">
-                                Javier P.
-                            </p>
-                            <p class="font-montserrat text-sm text-custom-dark opacity-60">
-                                Cliente - Remodelación Completa
-                            </p>
-                        </div>
-
-                        <div class="flex-shrink-0 w-full md:w-1/3 snap-center bg-white border-2 border-custom-primary/20 p-8 rounded-2xl shadow-lg hover:shadow-2xl hover:border-custom-primary/50 transition duration-300">
-                            <div class="flex justify-between items-start mb-4">
-                                <svg class="w-10 h-10 text-custom-gold opacity-70" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M11 6C11 3.791 9.209 2 7 2C4.791 2 3 3.791 3 6V13C3 15.209 4.791 17 7 17H11V21L15 17H17C19.209 17 21 15.209 21 13V6H11ZM11 15H7C5.895 15 5 14.105 5 13V6C5 4.895 5.895 4 7 4C8.105 4 9 4.895 9 6V11H11V15Z"/>
-                                </svg>
-                                <div class="flex text-custom-gold">
-                                    <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26l6.91.75l-5 4.87l1.18 6.88L12 18.25l-6.18 3.25l1.18-6.88l-5-4.87l6.91-.75L12 2z"/></svg>
-                                    <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26l6.91.75l-5 4.87l1.18 6.88L12 18.25l-6.18 3.25l1.18-6.88l-5-4.87l6.91-.75L12 2z"/></svg>
-                                    <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26l6.91.75l-5 4.87l1.18 6.88L12 18.25l-6.18 3.25l1.18-6.88l-5-4.87l6.91-.75L12 2z"/></svg>
-                                    <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26l6.91.75l-5 4.87l1.18 6.88L12 18.25l-6.18 3.25l1.18-6.88l-5-4.87l6.91-.75L12 2z"/></svg>
-                                    <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26l6.91.75l-5 4.87l1.18 6.88L12 18.25l-6.18 3.25l1.18-6.88l-5-4.87l6.91-.75L12 2z"/></svg>
-                                </div>
-                            </div>
-                            
-                            <p class="font-montserrat text-lg italic text-custom-dark opacity-80 mb-6 leading-relaxed">
-                                "DECORGLAM es sinónimo de exclusividad. La facilidad de comunicación y la respuesta inmediata reforzaron la credibilidad de su servicio."
-                            </p>
-                            
-                            <p class="font-playfair font-bold text-custom-dark text-lg">
-                                Mónica S.
-                            </p>
-                            <p class="font-montserrat text-sm text-custom-dark opacity-60">
-                                Cliente - Oficina Corporativa
-                            </p>
-                        </div>
-                    </div>
-
-                    <button id="prev-slide" aria-label="Anterior Testimonio" class="absolute top-1/2 left-0 transform -translate-y-1/2 p-3 bg-white/70 backdrop-blur-sm rounded-full shadow-lg opacity-70 hover:opacity-100 transition duration-300 hidden md:block">
-                        <svg class="w-6 h-6 text-custom-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
-                    </button>
-                    <button id="next-slide" aria-label="Siguiente Testimonio" class="absolute top-1/2 right-0 transform -translate-y-1/2 p-3 bg-white/70 backdrop-blur-sm rounded-full shadow-lg opacity-70 hover:opacity-100 transition duration-300 hidden md:block">
-                        <svg class="w-6 h-6 text-custom-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                    </button>
-
-                </div>
-                
-                <div class="text-center mt-12">
-                    <a href="#galeria" class="inline-block px-8 py-3 font-montserrat font-semibold rounded-full bg-custom-primary text-custom-dark hover:bg-custom-gold transition duration-300 shadow-md uppercase tracking-wider text-sm">
-                        Ver todos los Casos de Éxito
-                    </a>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Sección Categorías de Celebraciones -->
-        <section class="py-16 md:py-24 bg-custom-white">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-
-                <h2 class="font-playfair text-3xl md:text-5xl font-bold text-custom-dark mb-4 tracking-tight">
-                    Descubre el Estilo para Tu Próxima Celebración
-                </h2>
-                
-                <p class="text-lg md:text-xl text-custom-dark opacity-80 mb-12 font-montserrat max-w-3xl mx-auto">
-                    Inicia la Creación de Tu Evento Exclusivo. Explora nuestros diseños por tipo de celebración para encontrar la inspiración perfecta.
-                </p>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-
-                    <a href="#contacto" class="group relative block aspect-[4/5] sm:aspect-square overflow-hidden shadow-xl rounded-2xl transition duration-300 transform hover:scale-[1.02] hover:shadow-2xl cursor-pointer">
-                        
-                        <div class="absolute inset-0 bg-gradient-to-br from-custom-dark to-custom-primary"></div>
-                        
-                        <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition duration-300"></div>
-
-                        <div class="relative flex flex-col items-center justify-center h-full p-6 text-white text-center">
-                            <h3 class="font-playfair text-4xl md:text-5xl font-bold mb-4 tracking-wide leading-tight">
-                                Baby Shower
-                            </h3>
-                        </div>
-
-                        <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2">
-                            <span class="inline-block px-6 py-2 bg-custom-primary text-custom-dark font-montserrat font-semibold rounded-full shadow-lg transition duration-300 group-hover:bg-white group-hover:shadow-2xl text-sm md:text-base">
-                                Inicia la Creación
-                            </span>
-                        </div>
-                    </a>
-
-                    <a href="#contacto" class="group relative block aspect-[4/5] sm:aspect-square overflow-hidden shadow-xl rounded-2xl transition duration-300 transform hover:scale-[1.02] hover:shadow-2xl cursor-pointer">
-                        <div class="absolute inset-0 bg-gradient-to-br from-custom-dark to-custom-primary"></div>
-                        <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition duration-300"></div>
-
-                        <div class="relative flex flex-col items-center justify-center h-full p-6 text-white text-center">
-                            <h3 class="font-playfair text-4xl md:text-5xl font-bold mb-4 tracking-wide leading-tight">
-                                Cumpleaños Infantil
-                            </h3>
-                        </div>
-
-                        <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2">
-                            <span class="inline-block px-6 py-2 bg-custom-primary text-custom-dark font-montserrat font-semibold rounded-full shadow-lg transition duration-300 group-hover:bg-white group-hover:shadow-2xl text-sm md:text-base">
-                                Inicia la Creación
-                            </span>
-                        </div>
-                    </a>
-
-                    <a href="#contacto" class="group relative block aspect-[4/5] sm:aspect-square overflow-hidden shadow-xl rounded-2xl transition duration-300 transform hover:scale-[1.02] hover:shadow-2xl cursor-pointer">
-                        <div class="absolute inset-0 bg-gradient-to-br from-custom-dark to-custom-primary"></div>
-                        <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition duration-300"></div>
-
-                        <div class="relative flex flex-col items-center justify-center h-full p-6 text-white text-center">
-                            <h3 class="font-playfair text-4xl md:text-5xl font-bold mb-4 tracking-wide leading-tight">
-                                Temáticas Adultos
-                            </h3>
-                        </div>
-
-                        <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2">
-                            <span class="inline-block px-6 py-2 bg-custom-primary text-custom-dark font-montserrat font-semibold rounded-full shadow-lg transition duration-300 group-hover:bg-white group-hover:shadow-2xl text-sm md:text-base">
-                                Inicia la Creación
-                            </span>
-                        </div>
-                    </a>
-
-                    <a href="#contacto" class="group relative block aspect-[4/5] sm:aspect-square overflow-hidden shadow-xl rounded-2xl transition duration-300 transform hover:scale-[1.02] hover:shadow-2xl cursor-pointer">
-                        <div class="absolute inset-0 bg-gradient-to-br from-custom-dark to-custom-primary"></div>
-                        <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition duration-300"></div>
-
-                        <div class="relative flex flex-col items-center justify-center h-full p-6 text-white text-center">
-                            <h3 class="font-playfair text-4xl md:text-5xl font-bold mb-4 tracking-wide leading-tight">
-                                Eventos VIP
-                            </h3>
-                        </div>
-
-                        <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2">
-                            <span class="inline-block px-6 py-2 bg-custom-primary text-custom-dark font-montserrat font-semibold rounded-full shadow-lg transition duration-300 group-hover:bg-white group-hover:shadow-2xl text-sm md:text-base">
-                                Inicia la Creación
-                            </span>
-                        </div>
-                    </a>
-                    
-                </div>
-            </div>
-        </section>
-        
-        <!-- Sección Nosotros -->
-        <section id="nosotros" class="min-h-screen px-4 py-20 bg-gradient-to-b from-white via-custom-primary/5 to-custom-white relative overflow-hidden">
-            <!-- Elementos decorativos de fondo -->
-            <div class="absolute top-20 right-10 w-64 h-64 bg-custom-primary/10 rounded-full blur-3xl"></div>
-            <div class="absolute top-40 right-20 w-80 h-80 bg-custom-dark/15 rounded-full blur-3xl"></div>
-            <div class="absolute bottom-20 left-10 w-96 h-96 bg-custom-gold/10 rounded-full blur-3xl"></div>
-            
-            <div class="container mx-auto max-w-4xl text-center relative z-10">
-                <!-- Título -->
-                <h3 class="font-playfair text-3xl md:text-5xl font-bold text-custom-dark mb-6">
-                    Sobre DECORGLAM
-                </h3>
-                
-                <!-- Línea decorativa elegante -->
-                <div class="flex justify-center items-center gap-3 mb-12">
-                    <div class="w-12 h-0.5 bg-custom-primary"></div>
-                    <div class="w-3 h-3 border-2 border-custom-gold rotate-45"></div>
-                    <div class="w-12 h-0.5 bg-custom-primary"></div>
-                </div>
-                
-                <!-- Imagen del equipo (comentada hasta agregar) -->
-                <!-- <img src="imagenes/nosotros-equipo.jpg" alt="Equipo DECORGLAM" class="w-full max-w-2xl mx-auto rounded-2xl shadow-2xl mb-12"> -->
-                
-                <!-- Placeholder visual elegante -->
-                <div class="w-full max-w-2xl mx-auto h-64 bg-gradient-to-br from-custom-primary/20 via-custom-gold/20 to-custom-dark/20 rounded-2xl shadow-xl mb-12 flex items-center justify-center border-2 border-custom-primary/30">
-                    <span class="font-playfair text-3xl text-custom-dark opacity-40">Nuestro Equipo</span>
-                </div>
-                
-                <!-- Texto principal -->
-                <p class="font-montserrat text-lg md:text-xl text-custom-dark opacity-80 leading-relaxed mb-8">
-                    Somos especialistas en crear espacios que cuentan historias. Con años de experiencia en diseño de interiores de lujo, transformamos cada proyecto en una obra de arte habitable.
-                </p>
-                
-                <p class="font-montserrat text-lg text-custom-dark opacity-70 leading-relaxed mb-12">
-                    Nuestro enfoque combina la <span class="text-custom-gold font-semibold">elegancia minimalista</span> con el <span class="text-custom-dark font-semibold">impacto visual</span>, creando ambientes que reflejan la personalidad única de cada cliente.
-                </p>
-                
-                <!-- Estadísticas -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-                    <div class="p-6 bg-white rounded-xl shadow-md border border-custom-primary/20">
-                        <p class="font-playfair text-4xl font-bold text-custom-gold mb-2">150+</p>
-                        <p class="font-montserrat text-custom-dark opacity-70">Proyectos Completados</p>
-                    </div>
-                    <div class="p-6 bg-white rounded-xl shadow-md border border-custom-gold/20">
-                        <p class="font-playfair text-4xl font-bold text-custom-primary mb-2">98%</p>
-                        <p class="font-montserrat text-custom-dark opacity-70">Clientes Satisfechos</p>
-                    </div>
-                    <div class="p-6 bg-white rounded-xl shadow-md border border-custom-dark/20">
-                        <p class="font-playfair text-4xl font-bold text-custom-dark mb-2">10+</p>
-                        <p class="font-montserrat text-custom-dark opacity-70">Años de Experiencia</p>
-                    </div>
-                </div>
-                
-                <!-- Línea decorativa final -->
-                <div class="flex justify-center items-center gap-2 mt-8">
-                    <div class="w-10 h-0.5 bg-custom-gold"></div>
-                    <div class="w-2 h-2 bg-custom-gold rounded-full"></div>
-                    <div class="w-10 h-0.5 bg-custom-gold"></div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Sección Contacto -->
-        <section id="contacto" class="min-h-screen px-4 py-20 bg-gradient-to-b from-custom-white to-white relative">
-            <!-- Fondo decorativo -->
-            <div class="absolute inset-0 bg-gradient-to-br from-custom-dark/5 via-transparent to-custom-primary/10 -z-10"></div>
-            
-            <div class="container mx-auto max-w-4xl">
-                <!-- Título -->
-                <h3 class="font-playfair text-3xl md:text-5xl font-bold text-custom-dark text-center mb-6">
-                    Contáctanos
-                </h3>
-                
-                <p class="font-montserrat text-center text-custom-dark opacity-70 mb-8 max-w-2xl mx-auto">
-                    ¿Listo para transformar tu espacio? Estamos aquí para hacer realidad tu visión
-                </p>
-                
-                <!-- Línea decorativa elegante -->
-                <div class="flex justify-center items-center gap-2 mb-16">
-                    <div class="w-16 h-0.5 bg-custom-dark"></div>
-                    <div class="w-2 h-2 bg-custom-primary rounded-full"></div>
-                    <div class="w-2 h-2 bg-custom-gold rounded-full"></div>
-                    <div class="w-2 h-2 bg-custom-primary rounded-full"></div>
-                    <div class="w-16 h-0.5 bg-custom-dark"></div>
-                </div>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-                    <!-- Información de Contacto -->
-                    <div class="bg-white rounded-2xl shadow-xl p-8 border-2 border-custom-primary/20">
-                        <h4 class="font-playfair text-2xl font-bold text-custom-dark mb-6">Información</h4>
-                        
-                        <div class="space-y-6">
-                            <!-- Email -->
-                            <div class="flex items-start space-x-4">
-                                <div class="w-12 h-12 bg-gradient-to-br from-custom-primary to-custom-gold rounded-full flex items-center justify-center flex-shrink-0">
-                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <p class="font-montserrat font-semibold text-custom-dark mb-1">Email</p>
-                                    <p class="font-montserrat text-custom-dark opacity-70">contacto@decorglam.com</p>
-                                </div>
-                            </div>
-                            
-                            <!-- Teléfono -->
-                            <div class="flex items-start space-x-4">
-                                <div class="w-12 h-12 bg-gradient-to-br from-custom-gold to-custom-dark rounded-full flex items-center justify-center flex-shrink-0">
-                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <p class="font-montserrat font-semibold text-custom-dark mb-1">Teléfono</p>
-                                    <p class="font-montserrat text-custom-dark opacity-70">+34 123 456 789</p>
-                                </div>
-                            </div>
-                            
-                            <!-- Ubicación -->
-                            <div class="flex items-start space-x-4">
-                                <div class="w-12 h-12 bg-gradient-to-br from-custom-dark to-custom-primary rounded-full flex items-center justify-center flex-shrink-0">
-                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <p class="font-montserrat font-semibold text-custom-dark mb-1">Ubicación</p>
-                                    <p class="font-montserrat text-custom-dark opacity-70">Barcelona, España</p>
-                                </div>
-                            </div>
-                            
-                            <!-- Horario -->
-                            <div class="flex items-start space-x-4">
-                                <div class="w-12 h-12 bg-gradient-to-br from-custom-primary to-custom-dark rounded-full flex items-center justify-center flex-shrink-0">
-                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <p class="font-montserrat font-semibold text-custom-dark mb-1">Horario</p>
-                                    <p class="font-montserrat text-custom-dark opacity-70">Lun - Vie: 9:00 - 18:00</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Formulario de Contacto -->
-                    <div class="bg-gradient-to-br from-custom-primary/10 to-custom-gold/10 rounded-2xl shadow-xl p-8 border-2 border-custom-gold/30">
-                        <h4 class="font-playfair text-2xl font-bold text-custom-dark mb-6">Envíanos un Mensaje</h4>
-                        
-                        <form class="space-y-4">
-                            <div>
-                                <input type="text" placeholder="Nombre" class="w-full px-4 py-3 rounded-lg border-2 border-custom-primary/30 focus:border-custom-primary focus:outline-none font-montserrat">
-                            </div>
-                            <div>
-                                <input type="email" placeholder="Email" class="w-full px-4 py-3 rounded-lg border-2 border-custom-primary/30 focus:border-custom-primary focus:outline-none font-montserrat">
-                            </div>
-                            <div>
-                                <input type="tel" placeholder="Teléfono" class="w-full px-4 py-3 rounded-lg border-2 border-custom-primary/30 focus:border-custom-primary focus:outline-none font-montserrat">
-                            </div>
-                            <div>
-                                <textarea rows="4" placeholder="Mensaje" class="w-full px-4 py-3 rounded-lg border-2 border-custom-primary/30 focus:border-custom-primary focus:outline-none font-montserrat resize-none"></textarea>
-                            </div>
-                            <button type="submit" class="w-full bg-gradient-to-r from-custom-primary to-custom-gold text-custom-dark font-montserrat font-semibold py-3 rounded-lg hover:shadow-lg transition-all duration-300 hover:scale-105">
-                                Enviar Mensaje
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Footer -->
-        <footer class="bg-custom-dark text-white py-12 px-4">
-            <div class="container mx-auto max-w-6xl">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-                    <!-- Logo y descripción -->
-                    <div>
-                        <h5 class="font-playfair text-3xl font-bold mb-4 logo-gradient-light">DECOЯGLAM</h5>
-                        <p class="font-montserrat text-sm opacity-70 leading-relaxed">
-                            Transformando espacios en experiencias de lujo con elegancia minimalista.
-                        </p>
-                    </div>
-                    
-                    <!-- Enlaces rápidos -->
-                    <div>
-                        <h6 class="font-playfair text-xl font-semibold mb-4 text-custom-gold">Enlaces</h6>
-                        <ul class="space-y-2 font-montserrat text-sm">
-                            <li><a href="#inicio" class="hover:text-custom-primary transition-colors">Inicio</a></li>
-                            <li><a href="#servicios" class="hover:text-custom-primary transition-colors">Servicios</a></li>
-                            <li><a href="#galeria" class="hover:text-custom-primary transition-colors">Galería</a></li>
-                            <li><a href="#nosotros" class="hover:text-custom-primary transition-colors">Nosotros</a></li>
-                            <li><a href="#contacto" class="hover:text-custom-primary transition-colors">Contacto</a></li>
-                        </ul>
-                    </div>
-                    
-                    <!-- Redes sociales -->
-                    <div>
-                        <h6 class="font-playfair text-xl font-semibold mb-4 text-custom-gold">Síguenos</h6>
-                        <div class="flex space-x-4">
-                            <a href="#" class="w-10 h-10 bg-custom-primary rounded-full flex items-center justify-center hover:bg-custom-gold transition-colors">
-                                <span class="sr-only">Instagram</span>
-                                <svg class="w-5 h-5 text-custom-dark" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                                </svg>
-                            </a>
-                            <a href="#" class="w-10 h-10 bg-custom-primary rounded-full flex items-center justify-center hover:bg-custom-gold transition-colors">
-                                <span class="sr-only">Facebook</span>
-                                <svg class="w-5 h-5 text-custom-dark" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                                </svg>
-                            </a>
-                            <a href="#" class="w-10 h-10 bg-custom-primary rounded-full flex items-center justify-center hover:bg-custom-gold transition-colors">
-                                <span class="sr-only">Pinterest</span>
-                                <svg class="w-5 h-5 text-custom-dark" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M12 0c-6.627 0-12 5.372-12 12 0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738.098.119.112.224.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.631-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146 1.124.347 2.317.535 3.554.535 6.627 0 12-5.373 12-12 0-6.628-5.373-12-12-12z"/>
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Copyright -->
-                <div class="border-t border-white/20 pt-8 text-center">
-                    <p class="font-montserrat text-sm opacity-70">
-                        © 2025 DECORGLAM. Todos los derechos reservados. Diseño de interiores de lujo.
-                    </p>
-                </div>
-            </div>
-        </footer>
         
     </main>
     
-    <!-- Botón CTA Flotante Fijo (Inferior Derecha) -->
-    <a href="#contacto" 
-       class="cta-button fixed bottom-4 right-4 bg-custom-primary text-custom-dark font-montserrat font-semibold px-6 py-4 rounded-full shadow-lg z-50 hover:shadow-xl text-sm md:text-base">
-        Activa Tu Experiencia
+    <!-- Footer -->
+    <footer class="bg-custom-dark text-white py-12 px-4">
+        <div class="container mx-auto max-w-6xl">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h5 class="font-playfair text-2xl font-bold mb-4 logo-gradient-light">DECOЯGLAM</h5>
+                    <p class="font-montserrat text-sm opacity-70">Transformando espacios en experiencias inolvidables.</p>
+                </div>
+                
+                <div>
+                    <h6 class="font-playfair text-lg font-semibold mb-4 text-custom-gold">Enlaces</h6>
+                    <ul class="space-y-2 font-montserrat text-sm">
+                        <li><a href="index.html" class="opacity-70 hover:opacity-100 transition">Inicio</a></li>
+                        <li><a href="servicios.html" class="opacity-70 hover:opacity-100 transition">Servicios</a></li>
+                        <li><a href="galeria.html" class="opacity-70 hover:opacity-100 transition">Galería</a></li>
+                        <li><a href="blog.html" class="opacity-70 hover:opacity-100 transition">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h6 class="font-playfair text-lg font-semibold mb-4 text-custom-gold">Legal</h6>
+                    <ul class="space-y-2 font-montserrat text-sm">
+                        <li><a href="#" class="opacity-70 hover:opacity-100 transition">Privacidad</a></li>
+                        <li><a href="#" class="opacity-70 hover:opacity-100 transition">Términos</a></li>
+                        <li><a href="contacto.html" class="opacity-70 hover:opacity-100 transition">Contacto</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h6 class="font-playfair text-lg font-semibold mb-4 text-custom-gold">Síguenos</h6>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-custom-primary rounded-full flex items-center justify-center hover:bg-custom-gold transition text-custom-dark">
+                            <span class="text-sm font-bold">f</span>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-custom-primary rounded-full flex items-center justify-center hover:bg-custom-gold transition text-custom-dark">
+                            <span class="text-sm font-bold">@</span>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-custom-primary rounded-full flex items-center justify-center hover:bg-custom-gold transition text-custom-dark">
+                            <span class="text-sm font-bold">P</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/20 pt-8 text-center">
+                <p class="font-montserrat text-sm opacity-70">
+                    © 2025 DECORGLAM. Todos los derechos reservados.
+                </p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- CTA Flotante -->
+    <a href="contacto.html" class="cta-button fixed bottom-6 right-6 bg-custom-primary text-custom-dark font-montserrat font-semibold px-6 py-3 rounded-full shadow-lg z-40 hover:shadow-xl text-sm">
+        Contactar
     </a>
     
-    <!-- JavaScript para el menú hamburguesa -->
-    <script>
-        const menuToggle = document.getElementById('menuToggle');
-        const menuClose = document.getElementById('menuClose');
-        const menuOverlay = document.getElementById('menuOverlay');
-        const menuLinks = menuOverlay.querySelectorAll('a');
-        
-        // Abrir menú
-        menuToggle.addEventListener('click', () => {
-            menuOverlay.classList.add('active');
-        });
-        
-        // Cerrar menú
-        menuClose.addEventListener('click', () => {
-            menuOverlay.classList.remove('active');
-        });
-        
-        // Cerrar menú al hacer click en un enlace
-        menuLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                menuOverlay.classList.remove('active');
-            });
-        });
-        
-        // Cerrar menú al presionar ESC
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                menuOverlay.classList.remove('active');
-            }
-        });
-        
-        // Carousel de Testimonios
-        const carousel = document.getElementById('testimonial-carousel');
-        const prevBtn = document.getElementById('prev-slide');
-        const nextBtn = document.getElementById('next-slide');
-        
-        if (carousel && prevBtn && nextBtn) {
-            prevBtn.addEventListener('click', () => {
-                carousel.scrollBy({
-                    left: -carousel.offsetWidth / 3,
-                    behavior: 'smooth'
-                });
-            });
-            
-            nextBtn.addEventListener('click', () => {
-                carousel.scrollBy({
-                    left: carousel.offsetWidth / 3,
-                    behavior: 'smooth'
-                });
-            });
-        }
-    </script>
-    
+    <script src="js/main.js"></script>
 </body>
 </html>
