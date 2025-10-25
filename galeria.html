@@ -84,7 +84,9 @@
             visibility: visible;
             transition: opacity 0.8s ease-out, visibility 0.8s ease-out;
         }
-
+        .bar {
+            top: 50px;  
+        }
         .loading-screen.hidden {
             opacity: 0;
             visibility: hidden;
@@ -243,7 +245,7 @@
         </ul>
     </nav>
     
-    <main class="pt-20">
+    <main  class="pt-20">
         
         <section class="min-h-96 flex items-center justify-center px-4 py-16 relative overflow-hidden">
             <div class="absolute inset-0 bg-gradient-to-br from-custom-primary/20 to-custom-dark/10 -z-10"></div>
@@ -254,7 +256,7 @@
         </section>
         
         <!-- Filtros -->
-        <section class="py-12 px-4 sticky top-24 bg-custom-white shadow-md z-40 border-t-2 border-custom-primary">
+        <section class="py-12 px-4 sticky bg-custom-white shadow-md z-40 border-t-2 border-custom-primary" style="top: 50px;">
             <div class="container mx-auto max-w-6xl">
                 <div class="flex flex-wrap gap-2 sm:gap-3 justify-center">
                     <button onclick="filterGallery('all')" class="filter-btn active px-4 sm:px-6 py-2 rounded-full font-montserrat font-semibold text-sm sm:text-base bg-custom-primary text-custom-dark hover:bg-custom-gold transition shadow-md hover:shadow-lg">
