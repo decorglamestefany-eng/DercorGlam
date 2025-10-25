@@ -254,22 +254,22 @@
         </section>
         
         <!-- Filtros -->
-        <section class="py-12 px-4 sticky top-24 bg-custom-white/95 backdrop-blur z-40">
+        <section class="py-12 px-4 sticky top-24 bg-custom-white shadow-md z-40 border-t-2 border-custom-primary">
             <div class="container mx-auto max-w-6xl">
-                <div class="flex flex-wrap gap-3 justify-center">
-                    <button onclick="filterGallery('all')" class="filter-btn active px-6 py-2 rounded-full font-montserrat font-semibold bg-custom-primary text-custom-dark hover:bg-custom-gold transition">
+                <div class="flex flex-wrap gap-2 sm:gap-3 justify-center">
+                    <button onclick="filterGallery('all')" class="filter-btn active px-4 sm:px-6 py-2 rounded-full font-montserrat font-semibold text-sm sm:text-base bg-custom-primary text-custom-dark hover:bg-custom-gold transition shadow-md hover:shadow-lg">
                         Todos
                     </button>
-                    <button onclick="filterGallery('baby')" class="filter-btn px-6 py-2 rounded-full font-montserrat font-semibold bg-custom-light text-custom-dark hover:bg-custom-primary transition">
+                    <button onclick="filterGallery('baby')" class="filter-btn px-4 sm:px-6 py-2 rounded-full font-montserrat font-semibold text-sm sm:text-base bg-custom-light text-custom-dark hover:bg-custom-primary transition shadow-md hover:shadow-lg">
                         Baby Shower
                     </button>
-                    <button onclick="filterGallery('cumple')" class="filter-btn px-6 py-2 rounded-full font-montserrat font-semibold bg-custom-light text-custom-dark hover:bg-custom-primary transition">
+                    <button onclick="filterGallery('cumple')" class="filter-btn px-4 sm:px-6 py-2 rounded-full font-montserrat font-semibold text-sm sm:text-base bg-custom-light text-custom-dark hover:bg-custom-primary transition shadow-md hover:shadow-lg">
                         Cumpleaños
                     </button>
-                    <button onclick="filterGallery('adultos')" class="filter-btn px-6 py-2 rounded-full font-montserrat font-semibold bg-custom-light text-custom-dark hover:bg-custom-primary transition">
+                    <button onclick="filterGallery('adultos')" class="filter-btn px-4 sm:px-6 py-2 rounded-full font-montserrat font-semibold text-sm sm:text-base bg-custom-light text-custom-dark hover:bg-custom-primary transition shadow-md hover:shadow-lg">
                         Adultos
                     </button>
-                    <button onclick="filterGallery('corporativo')" class="filter-btn px-6 py-2 rounded-full font-montserrat font-semibold bg-custom-light text-custom-dark hover:bg-custom-primary transition">
+                    <button onclick="filterGallery('corporativo')" class="filter-btn px-4 sm:px-6 py-2 rounded-full font-montserrat font-semibold text-sm sm:text-base bg-custom-light text-custom-dark hover:bg-custom-primary transition shadow-md hover:shadow-lg">
                         Corporativo
                     </button>
                 </div>
@@ -279,33 +279,33 @@
         <!-- Galería -->
         <section class="py-20 px-4">
             <div class="container mx-auto max-w-6xl">
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="gallery">
+                <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6" id="gallery">
                     <!-- Baby Shower Projects -->
                     <div class="gallery-item" data-category="baby">
-                        <div class="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition h-80 cursor-pointer group" onclick="openModal('Cumpleaños Especial', 'Baby Shower', 'Decoración elegante con temática moderna en tonos pastel. Flores frescas, globos de helio y una zona de fotos memorable.')">
+                        <div class="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition h-48 sm:h-60 md:h-72 lg:h-80 cursor-pointer group" onclick="openModal('Cumpleaños Especial', 'Baby Shower', 'Decoración elegante con temática moderna en tonos pastel. Flores frescas, globos de helio y una zona de fotos memorable.')">
                             <div class="w-full h-full bg-gradient-to-br from-custom-primary/30 to-custom-gold/20 flex items-center justify-center">
-                                <span class="text-custom-dark opacity-50 text-lg">Baby Shower 1</span>
+                                <span class="text-custom-dark opacity-50 text-sm sm:text-base lg:text-lg">Baby Shower 1</span>
                             </div>
                             <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
-                                <p class="text-white font-playfair text-xl">Ver Proyecto</p>
+                                <p class="text-white font-playfair text-sm sm:text-base lg:text-xl">Ver Proyecto</p>
                             </div>
                         </div>
                     </div>
                     
                     <div class="gallery-item" data-category="baby">
-                        <div class="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition h-80 cursor-pointer group" onclick="openModal('Baby Shower Sofisticado', 'Baby Shower', 'Ambiente lujoso con decoración en colores neutros y detalles en oro. Mesas elegantes y centro floral exclusivo.')">
+                        <div class="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition h-48 sm:h-60 md:h-72 lg:h-80 cursor-pointer group" onclick="openModal('Baby Shower Sofisticado', 'Baby Shower', 'Ambiente lujoso con decoración en colores neutros y detalles en oro. Mesas elegantes y centro floral exclusivo.')">
                             <div class="w-full h-full bg-gradient-to-br from-custom-gold/30 to-custom-dark/20 flex items-center justify-center">
-                                <span class="text-custom-dark opacity-50 text-lg">Baby Shower 2</span>
+                                <span class="text-custom-dark opacity-50 text-sm sm:text-base lg:text-lg">Baby Shower 2</span>
                             </div>
                             <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
-                                <p class="text-white font-playfair text-xl">Ver Proyecto</p>
+                                <p class="text-white font-playfair text-sm sm:text-base lg:text-xl">Ver Proyecto</p>
                             </div>
                         </div>
                     </div>
                     
                     <!-- Cumpleaños Projects -->
                     <div class="gallery-item" data-category="cumple">
-                        <div class="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition h-80 cursor-pointer group" onclick="openModal('Fiesta de Superhéroes', 'Cumpleaños', 'Temática de superhéroes con decoración dinámica, zona de fotos heroica y ambientación llena de energía.')">
+                        <div class="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition h-48 sm:h-60 md:h-72 lg:h-80 cursor-pointer group" onclick="openModal('Fiesta de Superhéroes', 'Cumpleaños', 'Temática de superhéroes con decoración dinámica, zona de fotos heroica y ambientación llena de energía.')">
                             <div class="w-full h-full bg-gradient-to-br from-custom-dark/30 to-custom-primary/20 flex items-center justify-center">
                                 <span class="text-custom-dark opacity-50 text-lg">Cumpleaños 1</span>
                             </div>
@@ -316,7 +316,7 @@
                     </div>
                     
                     <div class="gallery-item" data-category="cumple">
-                        <div class="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition h-80 cursor-pointer group" onclick="openModal('Fiesta de Princesas', 'Cumpleaños', 'Decoración mágica con temática de princesas. Globos gigantes, arcos florales y ambientación de cuento de hadas.')">
+                        <div class="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition h-48 sm:h-60 md:h-72 lg:h-80 cursor-pointer group" onclick="openModal('Fiesta de Princesas', 'Cumpleaños', 'Decoración mágica con temática de princesas. Globos gigantes, arcos florales y ambientación de cuento de hadas.')">
                             <div class="w-full h-full bg-gradient-to-br from-custom-primary/40 to-custom-gold/30 flex items-center justify-center">
                                 <span class="text-custom-dark opacity-50 text-lg">Cumpleaños 2</span>
                             </div>
@@ -328,7 +328,7 @@
                     
                     <!-- Eventos Adultos -->
                     <div class="gallery-item" data-category="adultos">
-                        <div class="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition h-80 cursor-pointer group" onclick="openModal('Cena de Gala', 'Evento Adulto', 'Cena sofisticada con mesas elegantemente decoradas, iluminación especial y detalles en oro y negro.')">
+                        <div class="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition h-48 sm:h-60 md:h-72 lg:h-80 cursor-pointer group" onclick="openModal('Cena de Gala', 'Evento Adulto', 'Cena sofisticada con mesas elegantemente decoradas, iluminación especial y detalles en oro y negro.')">
                             <div class="w-full h-full bg-gradient-to-br from-custom-gold/40 to-custom-dark/40 flex items-center justify-center">
                                 <span class="text-custom-dark opacity-50 text-lg">Evento Adulto 1</span>
                             </div>
@@ -339,7 +339,7 @@
                     </div>
                     
                     <div class="gallery-item" data-category="adultos">
-                        <div class="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition h-80 cursor-pointer group" onclick="openModal('Despedida Temática', 'Evento Adulto', 'Decoración moderna con temática personalizada, bar decorado y zona lounge exclusiva.')">
+                        <div class="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition h-48 sm:h-60 md:h-72 lg:h-80 cursor-pointer group" onclick="openModal('Despedida Temática', 'Evento Adulto', 'Decoración moderna con temática personalizada, bar decorado y zona lounge exclusiva.')">
                             <div class="w-full h-full bg-gradient-to-br from-custom-primary/50 to-custom-gold/40 flex items-center justify-center">
                                 <span class="text-custom-dark opacity-50 text-lg">Evento Adulto 2</span>
                             </div>
@@ -351,7 +351,7 @@
                     
                     <!-- Eventos Corporativos -->
                     <div class="gallery-item" data-category="corporativo">
-                        <div class="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition h-80 cursor-pointer group" onclick="openModal('Lanzamiento de Producto', 'Evento Corporativo', 'Ambiente profesional con branding corporativo, área de presentación y espacios de networking.')">
+                        <div class="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition h-48 sm:h-60 md:h-72 lg:h-80 cursor-pointer group" onclick="openModal('Lanzamiento de Producto', 'Evento Corporativo', 'Ambiente profesional con branding corporativo, área de presentación y espacios de networking.')">
                             <div class="w-full h-full bg-gradient-to-br from-custom-dark/50 to-custom-primary/30 flex items-center justify-center">
                                 <span class="text-custom-dark opacity-50 text-lg">Corporativo 1</span>
                             </div>
@@ -362,7 +362,7 @@
                     </div>
                     
                     <div class="gallery-item" data-category="corporativo">
-                        <div class="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition h-80 cursor-pointer group" onclick="openModal('Conferencia Anual', 'Evento Corporativo', 'Sala de conferencias elegantemente decorada con tecnología integrada y áreas de recepción.')">
+                        <div class="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition h-48 sm:h-60 md:h-72 lg:h-80 cursor-pointer group" onclick="openModal('Conferencia Anual', 'Evento Corporativo', 'Sala de conferencias elegantemente decorada con tecnología integrada y áreas de recepción.')">
                             <div class="w-full h-full bg-gradient-to-br from-custom-gold/50 to-custom-dark/40 flex items-center justify-center">
                                 <span class="text-custom-dark opacity-50 text-lg">Corporativo 2</span>
                             </div>
@@ -373,7 +373,7 @@
                     </div>
                     
                     <div class="gallery-item" data-category="corporativo">
-                        <div class="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition h-80 cursor-pointer group" onclick="openModal('Gala Corporativa', 'Evento Corporativo', 'Evento de gala con decoración premium, mesas ejecutivas y experiencia gastronómica exclusiva.')">
+                        <div class="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition h-48 sm:h-60 md:h-72 lg:h-80 cursor-pointer group" onclick="openModal('Gala Corporativa', 'Evento Corporativo', 'Evento de gala con decoración premium, mesas ejecutivas y experiencia gastronómica exclusiva.')">
                             <div class="w-full h-full bg-gradient-to-br from-custom-primary/50 to-custom-dark/50 flex items-center justify-center">
                                 <span class="text-custom-dark opacity-50 text-lg">Corporativo 3</span>
                             </div>
