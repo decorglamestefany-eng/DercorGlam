@@ -72,9 +72,137 @@
                 1px 1px 3px rgba(0, 0, 0, 0.4),
                 0 0 10px rgba(248, 200, 210, 0.15);
         }
+
+        /* PANTALLA DE CARGA */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, #FCFCFB 0%, #F5E6EB 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.8s ease-out, visibility 0.8s ease-out;
+        }
+
+        .loading-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-container {
+            text-align: center;
+        }
+
+        /* Logo animado */
+        .logo-loader {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            font-weight: bold;
+            background: linear-gradient(90deg, #F8C8D2 0%, #E5A0B8 25%, #C8789E 50%, #9A5580 75%, #4C286C 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInDown 0.8s ease-out;
+            margin-bottom: 20px;
+        }
+
+        /* Spinner elegante */
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(212, 175, 55, 0.2);
+            border-top: 3px solid #D4AF37;
+            border-radius: 50%;
+            animation: spin 1.5s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            font-family: 'Montserrat', sans-serif;
+            color: #4C286C;
+            font-size: 16px;
+            margin-top: 20px;
+            opacity: 0.7;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .dot {
+            display: inline-block;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: #D4AF37;
+            margin: 0 2px;
+            animation: blink 1.4s infinite;
+        }
+
+        .dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes blink {
+            0%, 60%, 100% {
+                opacity: 0.3;
+            }
+            30% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
     </style>
 </head>
 <body class="bg-custom-white font-montserrat text-custom-dark">
+    
+    <!-- PANTALLA DE CARGA -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loader-container">
+            <div class="logo-loader">DECORGLAM</div>
+            <div class="spinner"></div>
+            <div class="loading-text">
+                Cargando
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+        </div>
+    </div>
     
     <header class="fixed top-0 left-0 right-0 bg-custom-white shadow-sm z-50">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
@@ -340,6 +468,14 @@
     
     <script src="js/main.js"></script>
     <script>
+        // PANTALLA DE CARGA
+        window.addEventListener('load', function() {
+            const loadingScreen = document.getElementById('loadingScreen');
+            setTimeout(() => {
+                loadingScreen.classList.add('hidden');
+            }, 2500);
+        });
+
         function submitForm(e) {
             e.preventDefault();
             alert('¡Gracias por tu consulta! Nos pondremos en contacto pronto.');

@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Blog - Consejos de decoración, tendencias y guides de DECORGLAM">
+    <title>Blog - DECORGLAM</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'custom-primary': '#F8C8D2',
+                        'custom-white': '#FCFCFB',
+                        'custom-dark': '#4C286C',
+                        'custom-gold': '#D4AF37',
+                        'custom-light': '#F5E6EB'
+                    },
+                    fontFamily: {
+                        'playfair': ['"Playfair Display"', 'serif'],
+                        'montserrat': ['Montserrat', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        * {
+            scroll-behavior: smooth;
+        }
+        
+        .menu-overlay {
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        .menu-overlay.active {
+            transform: translateX(0);
+        }
+        
+        .logo-gradient {
+            background: linear-gradient(90deg, #F8C8D2 0%, #E5A0B8 25%, #C8789E 50%, #9A5580 75%, #4C286C 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .logo-gradient-light {
+            background: linear-gradient(90deg, #F8C8D2 0%, #FFD700 50%, #FFFFFF 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* PANTALLA DE CARGA */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, #FCFCFB 0%, #F5E6EB 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.8s ease-out, visibility 0.8s ease-out;
+        }
+
+        .loading-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-container {
+            text-align: center;
+        }
+
+        /* Logo animado */
+        .logo-loader {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            font-weight: bold;
+            background: linear-gradient(90deg, #F8C8D2 0%, #E5A0B8 25%, #C8789E 50%, #9A5580 75%, #4C286C 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInDown 0.8s ease-out;
+            margin-bottom: 20px;
+        }
+
+        /* Spinner elegante */
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(212, 175, 55, 0.2);
+            border-top: 3px solid #D4AF37;
+            border-radius: 50%;
+            animation: spin 1.5s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            font-family: 'Montserrat', sans-serif;
+            color: #4C286C;
+            font-size: 16px;
+            margin-top: 20px;
+            opacity: 0.7;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .dot {
+            display: inline-block;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: #D4AF37;
+            margin: 0 2px;
+            animation: blink 1.4s infinite;
+        }
+
+        .dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes blink {
+            0%, 60%, 100% {
+                opacity: 0.3;
+            }
+            30% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body class="bg-custom-white font-montserrat text-custom-dark">
+    
+    <!-- PANTALLA DE CARGA -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loader-container">
+            <div class="logo-loader">DECORGLAM</div>
+            <div class="spinner"></div>
+            <div class="loading-text">
+                Cargando
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+        </div>
+    </div>
+    
+    <header class="fixed top-0 left-0 right-0 bg-custom-white shadow-sm z-50">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="index.html" class="font-playfair text-2xl md:text-3xl font-bold logo-gradient hover:opacity-80 transition">
+                DECOЯGLAM
+            </a>
+            
+            <nav class="hidden md:flex space-x-8">
+                <a href="index.html" class="font-montserrat text-sm font-semibold text-custom-dark hover:text-custom-primary transition">Inicio</a>
+                <a href="servicios.html" class="font-montserrat text-sm font-semibold text-custom-dark hover:text-custom-primary transition">Servicios</a>
+                <a href="galeria.html" class="font-montserrat text-sm font-semibold text-custom-dark hover:text-custom-primary transition">Galería</a>
+                <a href="blog.html" class="font-montserrat text-sm font-semibold text-custom-primary">Blog</a>
+                <a href="contacto.html" class="font-montserrat text-sm font-semibold text-custom-dark hover:text-custom-primary transition">Contacto</a>
+            </nav>
+            
+            <div class="hidden md:flex items-center">
+                <a href="carrito.html">
+                    <svg class="w-6 h-6 text-custom-dark hover:text-custom-primary transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                    </svg>
+                </a>
+            </div>
+            
+            <button id="menuToggle" class="md:hidden">
+                <svg class="w-8 h-8 text-custom-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+    </header>
+    
+    <nav id="menuOverlay" class="menu-overlay fixed inset-0 bg-custom-white z-40 flex items-center justify-center">
+        <button id="menuClose" class="absolute top-6 right-6">
+            <svg class="w-8 h-8 text-custom-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+        <ul class="space-y-8 text-center">
+            <li><a href="index.html" class="font-playfair text-3xl text-custom-dark hover:text-custom-gold transition">Inicio</a></li>
+            <li><a href="servicios.html" class="font-playfair text-3xl text-custom-dark hover:text-custom-gold transition">Servicios</a></li>
+            <li><a href="galeria.html" class="font-playfair text-3xl text-custom-dark hover:text-custom-gold transition">Galería</a></li>
+            <li><a href="blog.html" class="font-playfair text-3xl text-custom-dark hover:text-custom-gold transition">Blog</a></li>
+            <li><a href="contacto.html" class="font-playfair text-3xl text-custom-dark hover:text-custom-gold transition">Contacto</a></li>
+        </ul>
+    </nav>
+    
+    <main class="pt-20">
+        
+        <section class="min-h-96 flex items-center justify-center px-4 py-16 relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-br from-custom-primary/20 to-custom-dark/10 -z-10"></div>
+            <div class="container mx-auto max-w-4xl text-center">
+                <h1 class="font-playfair text-4xl md:text-6xl font-bold text-custom-dark mb-4">Blog de Decoración</h1>
+                <p class="font-montserrat text-lg text-custom-dark opacity-80">Consejos, tendencias e inspiración para tus eventos</p>
+            </div>
+        </section>
+        
+        <!-- Blog Posts -->
+        <section class="py-20 px-4">
+            <div class="container mx-auto max-w-4xl">
+                
+                <!-- Post 1 -->
+                <article class="mb-16 pb-16 border-b border-custom-primary/20">
+                    <div class="mb-8">
+                        <div class="bg-gradient-to-br from-custom-primary/20 to-custom-gold/20 rounded-2xl h-64 md:h-96 flex items-center justify-center mb-8">
+                            <p class="text-custom-dark opacity-40 text-lg">Imagen del artículo</p>
+                        </div>
+                        
+                        <div class="flex gap-4 mb-4 text-sm font-montserrat">
+                            <span class="text-custom-gold">📅 15 de Octubre, 2025</span>
+                            <span class="text-custom-primary">✍️ Por DECORGLAM</span>
+                        </div>
+                        
+                        <h2 class="font-playfair text-3xl md:text-4xl font-bold text-custom-dark mb-4">
+                            10 Tendencias de Decoración 2025 que no puedes perder
+                        </h2>
+                        
+                        <p class="font-montserrat text-lg text-custom-dark opacity-80 mb-6 leading-relaxed">
+                            La decoración de eventos está en constante evolución. Este año trae consigo nuevas tendencias que combinan la elegancia minimalista con toques de lujo accesible. En este artículo te compartimos las 10 tendencias más importantes que están marcando la pauta en el mundo de la decoración de eventos.
+                        </p>
+                        
+                        <h3 class="font-playfair text-2xl font-bold text-custom-dark mb-3 mt-8">Principales Tendencias:</h3>
+                        
+                        <ul class="space-y-3 font-montserrat text-custom-dark opacity-80 mb-6">
+                            <li><strong>1. Minimalismo Sofisticado:</strong> Menos es más. Líneas limpias, colores neutros con detalles en oro.</li>
+                            <li><strong>2. Sustentabilidad:</strong> Decoraciones eco-friendly y reutilizables.</li>
+                            <li><strong>3. Iluminación LED:</strong> Efectos de luz personalizados y sostenibles.</li>
+                            <li><strong>4. Plantas y Naturaleza:</strong> Incorporar verde en cada espacio.</li>
+                            <li><strong>5. Paleta de Pasteles Modernos:</strong> Colores suaves con tonos vibrantes.</li>
+                        </ul>
+                        
+                        <a href="#contacto" class="inline-block bg-custom-primary text-custom-dark font-semibold px-6 py-3 rounded-lg hover:bg-custom-gold transition">
+                            Consulta nuestros servicios
+                        </a>
+                    </div>
+                </article>
+                
+                <!-- Post 2 -->
+                <article class="mb-16 pb-16 border-b border-custom-primary/20">
+                    <div class="mb-8">
+                        <div class="bg-gradient-to-br from-custom-dark/20 to-custom-primary/20 rounded-2xl h-64 md:h-96 flex items-center justify-center mb-8">
+                            <p class="text-custom-dark opacity-40 text-lg">Imagen del artículo</p>
+                        </div>
+                        
+                        <div class="flex gap-4 mb-4 text-sm font-montserrat">
+                            <span class="text-custom-gold">📅 10 de Octubre, 2025</span>
+                            <span class="text-custom-primary">✍️ Por DECORGLAM</span>
+                        </div>
+                        
+                        <h2 class="font-playfair text-3xl md:text-4xl font-bold text-custom-dark mb-4">
+                            Guía Completa: Cómo Organizar un Baby Shower Perfecto
+                        </h2>
+                        
+                        <p class="font-montserrat text-lg text-custom-dark opacity-80 mb-6 leading-relaxed">
+                            El Baby Shower es uno de los eventos más emotivos y especiales. Aquí te compartimos una guía completa para organizar un baby shower que será recordado por siempre. Desde la selección de colores hasta la distribución del espacio.
+                        </p>
+                        
+                        <h3 class="font-playfair text-2xl font-bold text-custom-dark mb-3 mt-8">Elementos Clave:</h3>
+                        
+                        <ul class="space-y-3 font-montserrat text-custom-dark opacity-80 mb-6">
+                            <li><strong>Paleta de Colores:</strong> Elige tonos suaves como pasteles, dorados o neutros.</li>
+                            <li><strong>Zona Temática:</strong> Crea espacios para diferentes actividades (fotos, comida, regalos).</li>
+                            <li><strong>Flores y Plantas:</strong> Usa flores frescas para mayor elegancia.</li>
+                            <li><strong>Iluminación:</strong> La iluminación suave crea ambiente cálido y acogedor.</li>
+                            <li><strong>Detalles Personalizados:</strong> Pequeños detalles que reflejen tu personalidad.</li>
+                        </ul>
+                        
+                        <a href="servicios.html#baby-shower" class="inline-block bg-custom-gold text-custom-dark font-semibold px-6 py-3 rounded-lg hover:bg-custom-primary transition">
+                            Ver paquetes de Baby Shower
+                        </a>
+                    </div>
+                </article>
+                
+                <!-- Post 3 -->
+                <article class="mb-16 pb-16 border-b border-custom-primary/20">
+                    <div class="mb-8">
+                        <div class="bg-gradient-to-br from-custom-gold/20 to-custom-dark/20 rounded-2xl h-64 md:h-96 flex items-center justify-center mb-8">
+                            <p class="text-custom-dark opacity-40 text-lg">Imagen del artículo</p>
+                        </div>
+                        
+                        <div class="flex gap-4 mb-4 text-sm font-montserrat">
+                            <span class="text-custom-gold">📅 5 de Octubre, 2025</span>
+                            <span class="text-custom-primary">✍️ Por DECORGLAM</span>
+                        </div>
+                        
+                        <h2 class="font-playfair text-3xl md:text-4xl font-bold text-custom-dark mb-4">
+                            La Importancia de la Iluminación en Eventos
+                        </h2>
+                        
+                        <p class="font-montserrat text-lg text-custom-dark opacity-80 mb-6 leading-relaxed">
+                            La iluminación no es solo un elemento técnico, es un elemento emocional. La forma en que iluminas tu evento cambia completamente la atmósfera y la experiencia de tus invitados.
+                        </p>
+                        
+                        <h3 class="font-playfair text-2xl font-bold text-custom-dark mb-3 mt-8">Tipos de Iluminación:</h3>
+                        
+                        <ul class="space-y-3 font-montserrat text-custom-dark opacity-80 mb-6">
+                            <li><strong>Luz Ambiental:</strong> Crea la atmósfera general del evento.</li>
+                            <li><strong>Luz Focal:</strong> Destaca elementos clave como el centro de mesa.</li>
+                            <li><strong>Luz Decorativa:</strong> Efectos especiales que impactan visualmente.</li>
+                            <li><strong>Luz LED Inteligente:</strong> Personalizable y sostenible.</li>
+                        </ul>
+                        
+                        <p class="font-montserrat text-lg text-custom-dark opacity-80 mb-6 leading-relaxed">
+                            En DECORGLAM utilizamos tecnología LED de última generación para crear ambientes verdaderamente transformadores.
+                        </p>
+                    </div>
+                </article>
+                
+                <!-- Post 4 -->
+                <article class="mb-16">
+                    <div class="mb-8">
+                        <div class="bg-gradient-to-br from-custom-primary/30 to-custom-gold/30 rounded-2xl h-64 md:h-96 flex items-center justify-center mb-8">
+                            <p class="text-custom-dark opacity-40 text-lg">Imagen del artículo</p>
+                        </div>
+                        
+                        <div class="flex gap-4 mb-4 text-sm font-montserrat">
+                            <span class="text-custom-gold">📅 28 de Septiembre, 2025</span>
+                            <span class="text-custom-primary">✍️ Por DECORGLAM</span>
+                        </div>
+                        
+                        <h2 class="font-playfair text-3xl md:text-4xl font-bold text-custom-dark mb-4">
+                            Cumpleaños Temáticos: De Superhéroes a Fantasía
+                        </h2>
+                        
+                        <p class="font-montserrat text-lg text-custom-dark opacity-80 mb-6 leading-relaxed">
+                            Los cumpleaños temáticos son la forma perfecta de hacer que los más pequeños (y no tan pequeños) vivan una experiencia memorable. Desde superhéroes hasta mundos de fantasía, te mostramos cómo crear estas temáticas.
+                        </p>
+                        
+                        <h3 class="font-playfair text-2xl font-bold text-custom-dark mb-3 mt-8">Temas Populares 2025:</h3>
+                        
+                        <ul class="space-y-3 font-montserrat text-custom-dark opacity-80 mb-6">
+                            <li><strong>Superhéroes Marvel/DC:</strong> Colores vibrantes y acción.</li>
+                            <li><strong>Princesas Disney Modernas:</strong> Elegancia con toques modernos.</li>
+                            <li><strong>Aventura en la Jungla:</strong> Verde, animales y exploración.</li>
+                            <li><strong>Mundo Fantástico:</strong> Magia, unicornios y arco iris.</li>
+                            <li><strong>Espacial y Futurista:</strong> Planetas, naves y colores metálicos.</li>
+                        </ul>
+                        
+                        <a href="servicios.html#cumple-infantil" class="inline-block bg-custom-primary text-custom-dark font-semibold px-6 py-3 rounded-lg hover:bg-custom-gold transition">
+                            Ver paquetes de Cumpleaños
+                        </a>
+                    </div>
+                </article>
+                
+            </div>
+        </section>
+        
+        <!-- Newsletter -->
+        <section class="py-20 px-4 bg-custom-light">
+            <div class="container mx-auto max-w-2xl text-center">
+                <h2 class="font-playfair text-4xl font-bold text-custom-dark mb-4">Suscríbete al Blog</h2>
+                <p class="font-montserrat text-custom-dark opacity-80 mb-8">Recibe consejos, tendencias e inspiración directamente en tu correo</p>
+                
+                <form class="flex flex-col md:flex-row gap-3">
+                    <input type="email" placeholder="Tu correo electrónico" class="flex-1 px-6 py-3 rounded-lg border-2 border-custom-primary focus:border-custom-gold focus:outline-none font-montserrat">
+                    <button type="submit" class="bg-custom-primary text-custom-dark font-semibold px-8 py-3 rounded-lg hover:bg-custom-gold transition whitespace-nowrap">
+                        Suscribir
+                    </button>
+                </form>
+            </div>
+        </section>
+        
+    </main>
+    
+    <footer class="bg-custom-dark text-white py-12 px-4">
+        <div class="container mx-auto max-w-6xl">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h5 class="font-playfair text-2xl font-bold mb-4 logo-gradient-light">DECOЯGLAM</h5>
+                    <p class="font-montserrat text-sm opacity-70">Transformando espacios en experiencias inolvidables.</p>
+                </div>
+                <div>
+                    <h6 class="font-playfair text-lg font-semibold mb-4 text-custom-gold">Enlaces</h6>
+                    <ul class="space-y-2 font-montserrat text-sm">
+                        <li><a href="index.html" class="opacity-70 hover:opacity-100 transition">Inicio</a></li>
+                        <li><a href="servicios.html" class="opacity-70 hover:opacity-100 transition">Servicios</a></li>
+                        <li><a href="galeria.html" class="opacity-70 hover:opacity-100 transition">Galería</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h6 class="font-playfair text-lg font-semibold mb-4 text-custom-gold">Legal</h6>
+                    <ul class="space-y-2 font-montserrat text-sm">
+                        <li><a href="#" class="opacity-70 hover:opacity-100 transition">Privacidad</a></li>
+                        <li><a href="#" class="opacity-70 hover:opacity-100 transition">Términos</a></li>
+                        <li><a href="contacto.html" class="opacity-70 hover:opacity-100 transition">Contacto</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h6 class="font-playfair text-lg font-semibold mb-4 text-custom-gold">Síguenos</h6>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-custom-primary rounded-full flex items-center justify-center hover:bg-custom-gold transition text-custom-dark text-sm font-bold">f</a>
+                        <a href="#" class="w-10 h-10 bg-custom-primary rounded-full flex items-center justify-center hover:bg-custom-gold transition text-custom-dark text-sm font-bold">@</a>
+                        <a href="#" class="w-10 h-10 bg-custom-primary rounded-full flex items-center justify-center hover:bg-custom-gold transition text-custom-dark text-sm font-bold">P</a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-white/20 pt-8 text-center">
+                <p class="font-montserrat text-sm opacity-70">© 2025 DECORGLAM. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <a href="contacto.html" class="fixed bottom-6 right-6 bg-custom-primary text-custom-dark font-montserrat font-semibold px-6 py-3 rounded-full shadow-lg z-40 hover:shadow-xl text-sm">
+        Contactar
+    </a>
+    
+    <script src="js/main.js"></script>
+    <script>
+        // PANTALLA DE CARGA
+        window.addEventListener('load', function() {
+            const loadingScreen = document.getElementById('loadingScreen');
+            setTimeout(() => {
+                loadingScreen.classList.add('hidden');
+            }, 2500);
+        });
+    </script>
+</body>
+</html>

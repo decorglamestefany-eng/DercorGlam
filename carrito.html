@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Carrito - DECORGLAM">
+    <title>Carrito - DECORGLAM</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'custom-primary': '#F8C8D2',
+                        'custom-white': '#FCFCFB',
+                        'custom-dark': '#4C286C',
+                        'custom-gold': '#D4AF37',
+                        'custom-light': '#F5E6EB'
+                    },
+                    fontFamily: {
+                        'playfair': ['"Playfair Display"', 'serif'],
+                        'montserrat': ['Montserrat', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        * {
+            scroll-behavior: smooth;
+        }
+        
+        .menu-overlay {
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        .menu-overlay.active {
+            transform: translateX(0);
+        }
+        
+        .logo-gradient {
+            background: linear-gradient(90deg, #F8C8D2 0%, #E5A0B8 25%, #C8789E 50%, #9A5580 75%, #4C286C 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .logo-gradient-light {
+            background: linear-gradient(90deg, #F8C8D2 0%, #FFD700 50%, #FFFFFF 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* PANTALLA DE CARGA */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, #FCFCFB 0%, #F5E6EB 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.8s ease-out, visibility 0.8s ease-out;
+        }
+
+        .loading-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-container {
+            text-align: center;
+        }
+
+        /* Logo animado */
+        .logo-loader {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            font-weight: bold;
+            background: linear-gradient(90deg, #F8C8D2 0%, #E5A0B8 25%, #C8789E 50%, #9A5580 75%, #4C286C 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInDown 0.8s ease-out;
+            margin-bottom: 20px;
+        }
+
+        /* Spinner elegante */
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(212, 175, 55, 0.2);
+            border-top: 3px solid #D4AF37;
+            border-radius: 50%;
+            animation: spin 1.5s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            font-family: 'Montserrat', sans-serif;
+            color: #4C286C;
+            font-size: 16px;
+            margin-top: 20px;
+            opacity: 0.7;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .dot {
+            display: inline-block;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: #D4AF37;
+            margin: 0 2px;
+            animation: blink 1.4s infinite;
+        }
+
+        .dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes blink {
+            0%, 60%, 100% {
+                opacity: 0.3;
+            }
+            30% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body class="bg-custom-white font-montserrat text-custom-dark">
+    
+    <!-- PANTALLA DE CARGA -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loader-container">
+            <div class="logo-loader">DECORGLAM</div>
+            <div class="spinner"></div>
+            <div class="loading-text">
+                Cargando
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+        </div>
+    </div>
+    
+    <header class="fixed top-0 left-0 right-0 bg-custom-white shadow-sm z-50">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="index.html" class="font-playfair text-2xl md:text-3xl font-bold logo-gradient hover:opacity-80 transition">
+                DECOЯGLAM
+            </a>
+            
+            <nav class="hidden md:flex space-x-8">
+                <a href="index.html" class="font-montserrat text-sm font-semibold text-custom-dark hover:text-custom-primary transition">Inicio</a>
+                <a href="servicios.html" class="font-montserrat text-sm font-semibold text-custom-dark hover:text-custom-primary transition">Servicios</a>
+                <a href="galeria.html" class="font-montserrat text-sm font-semibold text-custom-dark hover:text-custom-primary transition">Galería</a>
+                <a href="blog.html" class="font-montserrat text-sm font-semibold text-custom-dark hover:text-custom-primary transition">Blog</a>
+                <a href="contacto.html" class="font-montserrat text-sm font-semibold text-custom-dark hover:text-custom-primary transition">Contacto</a>
+            </nav>
+            
+            <div class="hidden md:flex items-center">
+                <a href="carrito.html" class="text-custom-primary">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                    </svg>
+                </a>
+            </div>
+            
+            <button id="menuToggle" class="md:hidden">
+                <svg class="w-8 h-8 text-custom-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+    </header>
+    
+    <nav id="menuOverlay" class="menu-overlay fixed inset-0 bg-custom-white z-40 flex items-center justify-center">
+        <button id="menuClose" class="absolute top-6 right-6">
+            <svg class="w-8 h-8 text-custom-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+        <ul class="space-y-8 text-center">
+            <li><a href="index.html" class="font-playfair text-3xl text-custom-dark hover:text-custom-gold transition">Inicio</a></li>
+            <li><a href="servicios.html" class="font-playfair text-3xl text-custom-dark hover:text-custom-gold transition">Servicios</a></li>
+            <li><a href="galeria.html" class="font-playfair text-3xl text-custom-dark hover:text-custom-gold transition">Galería</a></li>
+            <li><a href="blog.html" class="font-playfair text-3xl text-custom-dark hover:text-custom-gold transition">Blog</a></li>
+            <li><a href="contacto.html" class="font-playfair text-3xl text-custom-dark hover:text-custom-gold transition">Contacto</a></li>
+        </ul>
+    </nav>
+    
+    <main class="pt-20">
+        
+        <section class="min-h-96 flex items-center justify-center px-4 py-16 relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-br from-custom-primary/20 to-custom-dark/10 -z-10"></div>
+            <div class="container mx-auto max-w-4xl text-center">
+                <h1 class="font-playfair text-4xl md:text-6xl font-bold text-custom-dark mb-4">Tu Carrito</h1>
+                <p class="font-montserrat text-lg text-custom-dark opacity-80">Revisa y personaliza tus paquetes</p>
+            </div>
+        </section>
+        
+        <!-- Carrito -->
+        <section class="py-20 px-4">
+            <div class="container mx-auto max-w-6xl">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    
+                    <!-- Items del Carrito -->
+                    <div class="lg:col-span-2">
+                        <div id="cartContainer" class="space-y-4">
+                            <div class="text-center py-12">
+                                <p class="font-playfair text-2xl text-custom-dark opacity-60">Tu carrito está vacío</p>
+                                <p class="font-montserrat text-custom-dark opacity-60 mt-2">Agrega servicios desde la página de Servicios</p>
+                                <a href="servicios.html" class="inline-block mt-6 bg-custom-primary text-custom-dark font-semibold px-8 py-3 rounded-lg hover:bg-custom-gold transition">
+                                    Ver Servicios
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Resumen del Carrito -->
+                    <div class="lg:col-span-1">
+                        <div class="bg-custom-light rounded-2xl p-8 sticky top-32 border-2 border-custom-primary/20">
+                            <h2 class="font-playfair text-2xl font-bold text-custom-dark mb-6">Resumen</h2>
+                            
+                            <div class="space-y-3 mb-6 pb-6 border-b border-custom-primary/20">
+                                <div class="flex justify-between font-montserrat">
+                                    <span class="text-custom-dark opacity-70">Subtotal</span>
+                                    <span id="subtotal" class="font-semibold">S/. 0</span>
+                                </div>
+                                <div class="flex justify-between font-montserrat">
+                                    <span class="text-custom-dark opacity-70">Impuestos (21%)</span>
+                                    <span id="taxes" class="font-semibold">S/. 0</span>
+                                </div>
+                                <div class="flex justify-between font-montserrat">
+                                    <span class="text-custom-dark opacity-70">Envío</span>
+                                    <span id="shipping" class="font-semibold">S/. 0</span>
+                                </div>
+                            </div>
+                            
+                            <div class="flex justify-between font-playfair text-2xl font-bold text-custom-dark mb-8">
+                                <span>Total</span>
+                                <span id="total" class="text-custom-primary">S/. 0</span>
+                            </div>
+                            
+                            <button onclick="proceedToCheckout()" class="w-full bg-gradient-to-r from-custom-primary to-custom-gold text-custom-dark font-montserrat font-semibold py-3 rounded-lg hover:shadow-lg transition mb-3">
+                                Proceder al Pago
+                            </button>
+                            
+                            <a href="servicios.html" class="block text-center w-full border-2 border-custom-dark text-custom-dark font-montserrat font-semibold py-3 rounded-lg hover:bg-custom-light transition">
+                                Continuar Comprando
+                            </a>
+                            
+                            <div class="mt-8 p-4 bg-white rounded-lg border border-custom-primary/20">
+                                <p class="font-montserrat text-sm text-custom-dark opacity-70">
+                                    <span class="font-semibold">💡 Consejo:</span> Nuestro equipo se contactará para personalizar aún más tu paquete según tus necesidades específicas.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Información Adicional -->
+        <section class="py-20 px-4 bg-custom-light">
+            <div class="container mx-auto max-w-6xl">
+                <h2 class="font-playfair text-4xl font-bold text-custom-dark text-center mb-16">Próximos Pasos</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-custom-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="font-playfair text-2xl font-bold text-white">1</span>
+                        </div>
+                        <h3 class="font-playfair text-xl font-bold text-custom-dark mb-2">Selecciona</h3>
+                        <p class="font-montserrat text-custom-dark opacity-70">Elige el paquete que mejor se ajuste a tu evento</p>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-custom-gold rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="font-playfair text-2xl font-bold text-white">2</span>
+                        </div>
+                        <h3 class="font-playfair text-xl font-bold text-custom-dark mb-2">Personaliza</h3>
+                        <p class="font-montserrat text-custom-dark opacity-70">Cuéntanos tus preferencias en el formulario</p>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-custom-dark rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="font-playfair text-2xl font-bold text-white text-custom-primary">3</span>
+                        </div>
+                        <h3 class="font-playfair text-xl font-bold text-custom-dark mb-2">Confirma</h3>
+                        <p class="font-montserrat text-custom-dark opacity-70">Realiza el pago y asegura tu evento</p>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-custom-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="font-playfair text-2xl font-bold text-white">4</span>
+                        </div>
+                        <h3 class="font-playfair text-xl font-bold text-custom-dark mb-2">¡Disfruta!</h3>
+                        <p class="font-montserrat text-custom-dark opacity-70">Nuestro equipo hará el resto</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+    </main>
+    
+    <footer class="bg-custom-dark text-white py-12 px-4">
+        <div class="container mx-auto max-w-6xl">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h5 class="font-playfair text-2xl font-bold mb-4 logo-gradient-light">DECOЯGLAM</h5>
+                    <p class="font-montserrat text-sm opacity-70">Transformando espacios en experiencias inolvidables.</p>
+                </div>
+                <div>
+                    <h6 class="font-playfair text-lg font-semibold mb-4 text-custom-gold">Enlaces</h6>
+                    <ul class="space-y-2 font-montserrat text-sm">
+                        <li><a href="index.html" class="opacity-70 hover:opacity-100 transition">Inicio</a></li>
+                        <li><a href="servicios.html" class="opacity-70 hover:opacity-100 transition">Servicios</a></li>
+                        <li><a href="galeria.html" class="opacity-70 hover:opacity-100 transition">Galería</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h6 class="font-playfair text-lg font-semibold mb-4 text-custom-gold">Legal</h6>
+                    <ul class="space-y-2 font-montserrat text-sm">
+                        <li><a href="#" class="opacity-70 hover:opacity-100 transition">Privacidad</a></li>
+                        <li><a href="#" class="opacity-70 hover:opacity-100 transition">Términos</a></li>
+                        <li><a href="contacto.html" class="opacity-70 hover:opacity-100 transition">Contacto</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h6 class="font-playfair text-lg font-semibold mb-4 text-custom-gold">Síguenos</h6>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-custom-primary rounded-full flex items-center justify-center hover:bg-custom-gold transition text-custom-dark text-sm font-bold">f</a>
+                        <a href="#" class="w-10 h-10 bg-custom-primary rounded-full flex items-center justify-center hover:bg-custom-gold transition text-custom-dark text-sm font-bold">@</a>
+                        <a href="#" class="w-10 h-10 bg-custom-primary rounded-full flex items-center justify-center hover:bg-custom-gold transition text-custom-dark text-sm font-bold">P</a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-white/20 pt-8 text-center">
+                <p class="font-montserrat text-sm opacity-70">© 2025 DECORGLAM. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="js/main.js"></script>
+    <script>
+        // PANTALLA DE CARGA
+        window.addEventListener('load', function() {
+            const loadingScreen = document.getElementById('loadingScreen');
+            setTimeout(() => {
+                loadingScreen.classList.add('hidden');
+            }, 2500);
+        });
+    </script>
+</body>
+</html>

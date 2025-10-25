@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Galería de proyectos - DECORGLAM - Diseño de interiores profesional">
+    <title>Galería - DECORGLAM</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'custom-primary': '#F8C8D2',
+                        'custom-white': '#FCFCFB',
+                        'custom-dark': '#4C286C',
+                        'custom-gold': '#D4AF37',
+                        'custom-light': '#F5E6EB'
+                    },
+                    fontFamily: {
+                        'playfair': ['"Playfair Display"', 'serif'],
+                        'montserrat': ['Montserrat', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        * {
+            scroll-behavior: smooth;
+        }
+        
+        .menu-overlay {
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        .menu-overlay.active {
+            transform: translateX(0);
+        }
+        
+        .logo-gradient {
+            background: linear-gradient(90deg, #F8C8D2 0%, #E5A0B8 25%, #C8789E 50%, #9A5580 75%, #4C286C 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .logo-gradient-light {
+            background: linear-gradient(90deg, #F8C8D2 0%, #FFD700 50%, #FFFFFF 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .modal {
+            display: none;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        /* PANTALLA DE CARGA */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, #FCFCFB 0%, #F5E6EB 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.8s ease-out, visibility 0.8s ease-out;
+        }
+
+        .loading-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-container {
+            text-align: center;
+        }
+
+        /* Logo animado */
+        .logo-loader {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            font-weight: bold;
+            background: linear-gradient(90deg, #F8C8D2 0%, #E5A0B8 25%, #C8789E 50%, #9A5580 75%, #4C286C 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInDown 0.8s ease-out;
+            margin-bottom: 20px;
+        }
+
+        /* Spinner elegante */
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(212, 175, 55, 0.2);
+            border-top: 3px solid #D4AF37;
+            border-radius: 50%;
+            animation: spin 1.5s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            font-family: 'Montserrat', sans-serif;
+            color: #4C286C;
+            font-size: 16px;
+            margin-top: 20px;
+            opacity: 0.7;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .dot {
+            display: inline-block;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: #D4AF37;
+            margin: 0 2px;
+            animation: blink 1.4s infinite;
+        }
+
+        .dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes blink {
+            0%, 60%, 100% {
+                opacity: 0.3;
+            }
+            30% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body class="bg-custom-white font-montserrat text-custom-dark">
+    
+    <!-- PANTALLA DE CARGA -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loader-container">
+            <div class="logo-loader">DECORGLAM</div>
+            <div class="spinner"></div>
+            <div class="loading-text">
+                Cargando
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+        </div>
+    </div>
+    
+    <header class="fixed top-0 left-0 right-0 bg-custom-white shadow-sm z-50">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="index.html" class="font-playfair text-2xl md:text-3xl font-bold logo-gradient hover:opacity-80 transition">
+                DECOЯGLAM
+            </a>
+            
+            <nav class="hidden md:flex space-x-8">
+                <a href="index.html" class="font-montserrat text-sm font-semibold text-custom-dark hover:text-custom-primary transition">Inicio</a>
+                <a href="servicios.html" class="font-montserrat text-sm font-semibold text-custom-dark hover:text-custom-primary transition">Servicios</a>
+                <a href="galeria.html" class="font-montserrat text-sm font-semibold text-custom-primary">Galería</a>
+                <a href="blog.html" class="font-montserrat text-sm font-semibold text-custom-dark hover:text-custom-primary transition">Blog</a>
+                <a href="contacto.html" class="font-montserrat text-sm font-semibold text-custom-dark hover:text-custom-primary transition">Contacto</a>
+            </nav>
+            
+            <div class="hidden md:flex items-center">
+                <a href="carrito.html">
+                    <svg class="w-6 h-6 text-custom-dark hover:text-custom-primary transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                    </svg>
+                </a>
+            </div>
+            
+            <button id="menuToggle" class="md:hidden">
+                <svg class="w-8 h-8 text-custom-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+    </header>
+    
+    <nav id="menuOverlay" class="menu-overlay fixed inset-0 bg-custom-white z-40 flex items-center justify-center">
+        <button id="menuClose" class="absolute top-6 right-6">
+            <svg class="w-8 h-8 text-custom-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+        <ul class="space-y-8 text-center">
+            <li><a href="index.html" class="font-playfair text-3xl text-custom-dark hover:text-custom-gold transition">Inicio</a></li>
+            <li><a href="servicios.html" class="font-playfair text-3xl text-custom-dark hover:text-custom-gold transition">Servicios</a></li>
+            <li><a href="galeria.html" class="font-playfair text-3xl text-custom-dark hover:text-custom-gold transition">Galería</a></li>
+            <li><a href="blog.html" class="font-playfair text-3xl text-custom-dark hover:text-custom-gold transition">Blog</a></li>
+            <li><a href="contacto.html" class="font-playfair text-3xl text-custom-dark hover:text-custom-gold transition">Contacto</a></li>
+        </ul>
+    </nav>
+    
+    <main class="pt-20">
+        
+        <section class="min-h-96 flex items-center justify-center px-4 py-16 relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-br from-custom-primary/20 to-custom-dark/10 -z-10"></div>
+            <div class="container mx-auto max-w-4xl text-center">
+                <h1 class="font-playfair text-4xl md:text-6xl font-bold text-custom-dark mb-4">Galería de Proyectos</h1>
+                <p class="font-montserrat text-lg text-custom-dark opacity-80">Explora nuestros trabajos y deja que la inspiración te guíe</p>
+            </div>
+        </section>
+        
+        <!-- Filtros -->
+        <section class="py-12 px-4 sticky top-24 bg-custom-white/95 backdrop-blur z-40">
+            <div class="container mx-auto max-w-6xl">
+                <div class="flex flex-wrap gap-3 justify-center">
+                    <button onclick="filterGallery('all')" class="filter-btn active px-6 py-2 rounded-full font-montserrat font-semibold bg-custom-primary text-custom-dark hover:bg-custom-gold transition">
+                        Todos
+                    </button>
+                    <button onclick="filterGallery('baby')" class="filter-btn px-6 py-2 rounded-full font-montserrat font-semibold bg-custom-light text-custom-dark hover:bg-custom-primary transition">
+                        Baby Shower
+                    </button>
+                    <button onclick="filterGallery('cumple')" class="filter-btn px-6 py-2 rounded-full font-montserrat font-semibold bg-custom-light text-custom-dark hover:bg-custom-primary transition">
+                        Cumpleaños
+                    </button>
+                    <button onclick="filterGallery('adultos')" class="filter-btn px-6 py-2 rounded-full font-montserrat font-semibold bg-custom-light text-custom-dark hover:bg-custom-primary transition">
+                        Adultos
+                    </button>
+                    <button onclick="filterGallery('corporativo')" class="filter-btn px-6 py-2 rounded-full font-montserrat font-semibold bg-custom-light text-custom-dark hover:bg-custom-primary transition">
+                        Corporativo
+                    </button>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Galería -->
+        <section class="py-20 px-4">
+            <div class="container mx-auto max-w-6xl">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="gallery">
+                    <!-- Baby Shower Projects -->
+                    <div class="gallery-item" data-category="baby">
+                        <div class="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition h-80 cursor-pointer group" onclick="openModal('Cumpleaños Especial', 'Baby Shower', 'Decoración elegante con temática moderna en tonos pastel. Flores frescas, globos de helio y una zona de fotos memorable.')">
+                            <div class="w-full h-full bg-gradient-to-br from-custom-primary/30 to-custom-gold/20 flex items-center justify-center">
+                                <span class="text-custom-dark opacity-50 text-lg">Baby Shower 1</span>
+                            </div>
+                            <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+                                <p class="text-white font-playfair text-xl">Ver Proyecto</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item" data-category="baby">
+                        <div class="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition h-80 cursor-pointer group" onclick="openModal('Baby Shower Sofisticado', 'Baby Shower', 'Ambiente lujoso con decoración en colores neutros y detalles en oro. Mesas elegantes y centro floral exclusivo.')">
+                            <div class="w-full h-full bg-gradient-to-br from-custom-gold/30 to-custom-dark/20 flex items-center justify-center">
+                                <span class="text-custom-dark opacity-50 text-lg">Baby Shower 2</span>
+                            </div>
+                            <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+                                <p class="text-white font-playfair text-xl">Ver Proyecto</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Cumpleaños Projects -->
+                    <div class="gallery-item" data-category="cumple">
+                        <div class="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition h-80 cursor-pointer group" onclick="openModal('Fiesta de Superhéroes', 'Cumpleaños', 'Temática de superhéroes con decoración dinámica, zona de fotos heroica y ambientación llena de energía.')">
+                            <div class="w-full h-full bg-gradient-to-br from-custom-dark/30 to-custom-primary/20 flex items-center justify-center">
+                                <span class="text-custom-dark opacity-50 text-lg">Cumpleaños 1</span>
+                            </div>
+                            <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+                                <p class="text-white font-playfair text-xl">Ver Proyecto</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item" data-category="cumple">
+                        <div class="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition h-80 cursor-pointer group" onclick="openModal('Fiesta de Princesas', 'Cumpleaños', 'Decoración mágica con temática de princesas. Globos gigantes, arcos florales y ambientación de cuento de hadas.')">
+                            <div class="w-full h-full bg-gradient-to-br from-custom-primary/40 to-custom-gold/30 flex items-center justify-center">
+                                <span class="text-custom-dark opacity-50 text-lg">Cumpleaños 2</span>
+                            </div>
+                            <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+                                <p class="text-white font-playfair text-xl">Ver Proyecto</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Eventos Adultos -->
+                    <div class="gallery-item" data-category="adultos">
+                        <div class="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition h-80 cursor-pointer group" onclick="openModal('Cena de Gala', 'Evento Adulto', 'Cena sofisticada con mesas elegantemente decoradas, iluminación especial y detalles en oro y negro.')">
+                            <div class="w-full h-full bg-gradient-to-br from-custom-gold/40 to-custom-dark/40 flex items-center justify-center">
+                                <span class="text-custom-dark opacity-50 text-lg">Evento Adulto 1</span>
+                            </div>
+                            <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+                                <p class="text-white font-playfair text-xl">Ver Proyecto</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item" data-category="adultos">
+                        <div class="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition h-80 cursor-pointer group" onclick="openModal('Despedida Temática', 'Evento Adulto', 'Decoración moderna con temática personalizada, bar decorado y zona lounge exclusiva.')">
+                            <div class="w-full h-full bg-gradient-to-br from-custom-primary/50 to-custom-gold/40 flex items-center justify-center">
+                                <span class="text-custom-dark opacity-50 text-lg">Evento Adulto 2</span>
+                            </div>
+                            <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+                                <p class="text-white font-playfair text-xl">Ver Proyecto</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Eventos Corporativos -->
+                    <div class="gallery-item" data-category="corporativo">
+                        <div class="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition h-80 cursor-pointer group" onclick="openModal('Lanzamiento de Producto', 'Evento Corporativo', 'Ambiente profesional con branding corporativo, área de presentación y espacios de networking.')">
+                            <div class="w-full h-full bg-gradient-to-br from-custom-dark/50 to-custom-primary/30 flex items-center justify-center">
+                                <span class="text-custom-dark opacity-50 text-lg">Corporativo 1</span>
+                            </div>
+                            <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+                                <p class="text-white font-playfair text-xl">Ver Proyecto</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item" data-category="corporativo">
+                        <div class="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition h-80 cursor-pointer group" onclick="openModal('Conferencia Anual', 'Evento Corporativo', 'Sala de conferencias elegantemente decorada con tecnología integrada y áreas de recepción.')">
+                            <div class="w-full h-full bg-gradient-to-br from-custom-gold/50 to-custom-dark/40 flex items-center justify-center">
+                                <span class="text-custom-dark opacity-50 text-lg">Corporativo 2</span>
+                            </div>
+                            <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+                                <p class="text-white font-playfair text-xl">Ver Proyecto</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item" data-category="corporativo">
+                        <div class="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition h-80 cursor-pointer group" onclick="openModal('Gala Corporativa', 'Evento Corporativo', 'Evento de gala con decoración premium, mesas ejecutivas y experiencia gastronómica exclusiva.')">
+                            <div class="w-full h-full bg-gradient-to-br from-custom-primary/50 to-custom-dark/50 flex items-center justify-center">
+                                <span class="text-custom-dark opacity-50 text-lg">Corporativo 3</span>
+                            </div>
+                            <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+                                <p class="text-white font-playfair text-xl">Ver Proyecto</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+    </main>
+    
+    <!-- Modal de Proyecto -->
+    <div id="projectModal" class="modal fixed inset-0 bg-black/50 z-50 items-center justify-center p-4 hidden">
+        <div class="bg-custom-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-96 overflow-y-auto">
+            <div class="p-8">
+                <div class="flex justify-between items-start mb-6">
+                    <div>
+                        <h2 id="modalTitle" class="font-playfair text-3xl font-bold text-custom-dark"></h2>
+                        <p id="modalCategory" class="text-custom-gold font-montserrat text-sm mt-2"></p>
+                    </div>
+                    <button onclick="closeModal()" class="text-custom-dark hover:text-custom-primary transition">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+                
+                <div class="bg-gradient-to-br from-custom-primary/20 to-custom-gold/20 rounded-xl h-48 flex items-center justify-center mb-6">
+                    <p class="text-custom-dark opacity-40">Galería de imágenes del proyecto</p>
+                </div>
+                
+                <p id="modalDescription" class="font-montserrat text-custom-dark opacity-80 mb-8"></p>
+                
+                <div class="flex gap-4">
+                    <button onclick="window.location.href='contacto.html'" class="flex-1 bg-custom-primary text-custom-dark font-semibold py-3 rounded-lg hover:bg-custom-gold transition">
+                        Solicitar Similar
+                    </button>
+                    <button onclick="closeModal()" class="flex-1 border-2 border-custom-dark text-custom-dark font-semibold py-3 rounded-lg hover:bg-custom-light transition">
+                        Cerrar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="bg-custom-dark text-white py-12 px-4">
+        <div class="container mx-auto max-w-6xl">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h5 class="font-playfair text-2xl font-bold mb-4 logo-gradient-light">DECOЯGLAM</h5>
+                    <p class="font-montserrat text-sm opacity-70">Transformando espacios en experiencias inolvidables.</p>
+                </div>
+                <div>
+                    <h6 class="font-playfair text-lg font-semibold mb-4 text-custom-gold">Enlaces</h6>
+                    <ul class="space-y-2 font-montserrat text-sm">
+                        <li><a href="index.html" class="opacity-70 hover:opacity-100 transition">Inicio</a></li>
+                        <li><a href="servicios.html" class="opacity-70 hover:opacity-100 transition">Servicios</a></li>
+                        <li><a href="galeria.html" class="opacity-70 hover:opacity-100 transition">Galería</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h6 class="font-playfair text-lg font-semibold mb-4 text-custom-gold">Legal</h6>
+                    <ul class="space-y-2 font-montserrat text-sm">
+                        <li><a href="#" class="opacity-70 hover:opacity-100 transition">Privacidad</a></li>
+                        <li><a href="#" class="opacity-70 hover:opacity-100 transition">Términos</a></li>
+                        <li><a href="contacto.html" class="opacity-70 hover:opacity-100 transition">Contacto</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h6 class="font-playfair text-lg font-semibold mb-4 text-custom-gold">Síguenos</h6>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-custom-primary rounded-full flex items-center justify-center hover:bg-custom-gold transition text-custom-dark text-sm font-bold">f</a>
+                        <a href="#" class="w-10 h-10 bg-custom-primary rounded-full flex items-center justify-center hover:bg-custom-gold transition text-custom-dark text-sm font-bold">@</a>
+                        <a href="#" class="w-10 h-10 bg-custom-primary rounded-full flex items-center justify-center hover:bg-custom-gold transition text-custom-dark text-sm font-bold">P</a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-white/20 pt-8 text-center">
+                <p class="font-montserrat text-sm opacity-70">© 2025 DECORGLAM. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <a href="contacto.html" class="fixed bottom-6 right-6 bg-custom-primary text-custom-dark font-montserrat font-semibold px-6 py-3 rounded-full shadow-lg z-40 hover:shadow-xl text-sm">
+        Contactar
+    </a>
+    
+    <script src="js/main.js"></script>
+    <script>
+        function filterGallery(category) {
+            const items = document.querySelectorAll('.gallery-item');
+            const buttons = document.querySelectorAll('.filter-btn');
+            
+            buttons.forEach(btn => btn.classList.remove('active', 'bg-custom-primary'));
+            buttons.forEach(btn => btn.classList.add('bg-custom-light'));
+            event.target.classList.add('active', 'bg-custom-primary');
+            event.target.classList.remove('bg-custom-light');
+            
+            items.forEach(item => {
+                if (category === 'all' || item.dataset.category === category) {
+                    item.style.display = '';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+        
+        function openModal(title, category, description) {
+            document.getElementById('modalTitle').textContent = title;
+            document.getElementById('modalCategory').textContent = category;
+            document.getElementById('modalDescription').textContent = description;
+            document.getElementById('projectModal').classList.remove('hidden');
+            document.getElementById('projectModal').classList.add('active');
+        }
+        
+        function closeModal() {
+            document.getElementById('projectModal').classList.add('hidden');
+            document.getElementById('projectModal').classList.remove('active');
+        }
+
+        // PANTALLA DE CARGA
+        window.addEventListener('load', function() {
+            const loadingScreen = document.getElementById('loadingScreen');
+            setTimeout(() => {
+                loadingScreen.classList.add('hidden');
+            }, 2500);
+        });
+    </script>
+</body>
+</html>

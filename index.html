@@ -108,19 +108,225 @@
         /* Estilo para texto con sombra sobre imagen de fondo */
         .hero-text {
             text-shadow: 
-                2px 2px 4px rgba(0, 0, 0, 0.3),
-                -2px -2px 4px rgba(255, 255, 255, 0.1),
-                0 0 20px rgba(212, 175, 55, 0.2);
+                2px 2px 8px rgba(0, 0, 0, 0.5),
+                0 0 25px rgba(212, 175, 55, 0.6),
+                0 0 40px rgba(212, 175, 55, 0.4),
+                0 0 60px rgba(212, 175, 55, 0.2);
+            font-weight: 800;
+            letter-spacing: -1px;
+            color: #FFFFFF;
+            filter: brightness(1.2);
         }
 
         .hero-subtitle {
             text-shadow: 
-                1px 1px 3px rgba(0, 0, 0, 0.4),
-                0 0 10px rgba(248, 200, 210, 0.15);
+                1px 1px 5px rgba(0, 0, 0, 0.4),
+                0 0 15px rgba(212, 175, 55, 0.5),
+                0 0 25px rgba(248, 200, 210, 0.2);
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            color: #FFFFFF;
+            filter: brightness(1.15);
+        }
+
+        /* Estilo especial para el texto dorado "Experiencias Inolvidables" */
+        .hero-gold-text {
+            color: #D4A757 !important;
+            font-weight: 900 !important;
+            text-shadow: 
+                0 0 16px rgba(212, 167, 87, 0.6),
+                0 0 30px rgba(212, 167, 87, 0.35),
+                0 0 45px rgba(212, 167, 87, 0.15) !important;
+            filter: brightness(1.15) saturate(1.2) drop-shadow(0 0 10px rgba(212, 167, 87, 0.4)) !important;
+            letter-spacing: -1px !important;
+        }
+
+        /* Animación de fade-in mejorada */
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .animate-fade-in {
+            animation: fadeInScale 1s ease-out;
+        }
+
+        /* Mejora de responsividad para pantallas pequeñas */
+        @media (max-width: 640px) {
+            .hero-text {
+                letter-spacing: -0.5px;
+                text-shadow: 
+                    2px 2px 6px rgba(0, 0, 0, 0.5),
+                    0 0 20px rgba(212, 175, 55, 0.5),
+                    0 0 30px rgba(212, 175, 55, 0.3);
+                filter: brightness(1.25);
+            }
+
+            .hero-subtitle {
+                text-shadow: 
+                    1px 1px 4px rgba(0, 0, 0, 0.4),
+                    0 0 12px rgba(212, 175, 55, 0.4);
+                filter: brightness(1.2);
+            }
+        }
+
+        /* Optimización para celulares en orientación horizontal (landscape) */
+        @media (max-height: 600px) and (orientation: landscape) {
+            #hero {
+                min-height: auto;
+                padding: 2rem 0;
+            }
+
+            #hero img {
+                object-fit: cover;
+                object-position: center;
+            }
+
+            .hero-text {
+                font-size: 1.75rem;
+            }
+
+            .hero-subtitle {
+                font-size: 0.875rem;
+            }
+        }
+
+        /* PANTALLA DE CARGA */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, #FCFCFB 0%, #F5E6EB 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.8s ease-out, visibility 0.8s ease-out;
+        }
+
+        .loading-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-container {
+            text-align: center;
+        }
+
+        /* Logo animado */
+        .logo-loader {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            font-weight: bold;
+            background: linear-gradient(90deg, #F8C8D2 0%, #E5A0B8 25%, #C8789E 50%, #9A5580 75%, #4C286C 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInDown 0.8s ease-out;
+            margin-bottom: 20px;
+        }
+
+        /* Spinner elegante */
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(212, 175, 55, 0.2);
+            border-top: 3px solid #D4AF37;
+            border-radius: 50%;
+            animation: spin 1.5s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            font-family: 'Montserrat', sans-serif;
+            color: #4C286C;
+            font-size: 16px;
+            margin-top: 20px;
+            opacity: 0.7;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .dot {
+            display: inline-block;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: #D4AF37;
+            margin: 0 2px;
+            animation: blink 1.4s infinite;
+        }
+
+        .dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes blink {
+            0%, 60%, 100% {
+                opacity: 0.3;
+            }
+            30% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
 <body class="bg-custom-white font-montserrat text-custom-dark">
+    
+    <!-- PANTALLA DE CARGA -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loader-container">
+            <div class="logo-loader">DECORGLAM</div>
+            <div class="spinner"></div>
+            <div class="loading-text">
+                Cargando
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+        </div>
+    </div>
     
     <!-- Header Fijo Superior -->
     <header class="fixed top-0 left-0 right-0 bg-custom-white shadow-sm z-50">
@@ -178,38 +384,42 @@
     <main class="pt-0">
         
         <!-- Hero Section -->
-        <section id="hero" class="min-h-screen flex items-center justify-center px-4 py-16 md:py-24 relative overflow-hidden">
-            <img src="imagenes/hero-principal.png" alt="Diseño elegante de interiores" class="absolute inset-0 w-full h-full object-cover -z-10 brightness-75">
+        <section id="hero" class="min-h-screen md:min-h-[100vh] sm:min-h-[80vh] flex items-center justify-center px-3 sm:px-4 py-16 md:py-24 relative overflow-hidden">
+            <!-- Imagen con brillo y saturación aumentados para que resalte -->
+            <img src="imagenes/hero-principal.png" alt="Diseño elegante de interiores" class="absolute inset-0 w-full h-full object-cover -z-10 brightness-120 saturate-150 hover:brightness-130 hover:saturate-160 transition-all duration-500 scale-100 sm:scale-105 md:scale-100 lg:scale-100">
             
-            <div class="container mx-auto max-w-4xl text-center relative z-10 fade-in">
-                <div class="mb-12"></div>
+            <!-- Overlay sutil (solo para mejorar contraste del texto) -->
+            <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/20 -z-10"></div>
+            
+            <div class="container mx-auto max-w-4xl text-center relative z-10 fade-in px-4 sm:px-6">
+                <div class="mb-8 md:mb-12"></div>
                 
-                <div class="flex justify-center items-center gap-3 mb-8">
-                    <div class="w-12 h-0.5 bg-custom-primary"></div>
-                    <div class="w-2 h-2 bg-custom-gold rounded-full pulse-dot"></div>
-                    <div class="w-12 h-0.5 bg-custom-primary"></div>
+                <div class="flex justify-center items-center gap-3 mb-6 md:mb-8 animate-fade-in">
+                    <div class="w-8 sm:w-12 h-0.5 bg-custom-primary shadow-lg"></div>
+                    <div class="w-2 h-2 bg-custom-gold rounded-full pulse-dot shadow-lg"></div>
+                    <div class="w-8 sm:w-12 h-0.5 bg-custom-primary shadow-lg"></div>
                 </div>
                 
-                <h2 class="font-playfair text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-8 leading-tight hero-text">
+                <h2 class="font-playfair text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-4 md:mb-8 leading-tight hero-text drop-shadow-2xl">
                     Transformamos Espacios en
-                    <span class="text-custom-gold block mt-2">Experiencias Inolvidables</span>
+                    <span class="block mt-2 sm:mt-3 md:mt-4 text-2xl sm:text-3xl md:text-6xl lg:text-7xl hero-gold-text">Experiencias Inolvidables</span>
                 </h2>
                 
-                <p class="font-montserrat text-lg md:text-xl text-white opacity-95 mb-12 leading-relaxed max-w-2xl mx-auto hero-subtitle">
+                <p class="font-montserrat text-sm sm:text-base md:text-lg lg:text-xl text-white opacity-95 mb-8 md:mb-12 leading-relaxed max-w-2xl mx-auto hero-subtitle drop-shadow-lg px-2">
                     Diseño de interiores de alta gama para eventos memorables. Desde celebraciones íntimas hasta corporativas, hacemos realidad tu visión.
                 </p>
                 
-                <div class="flex justify-center items-center gap-2 mb-8">
-                    <div class="w-8 h-0.5 bg-custom-primary"></div>
-                    <div class="w-8 h-0.5 bg-custom-gold"></div>
-                    <div class="w-8 h-0.5 bg-custom-dark"></div>
+                <div class="flex justify-center items-center gap-2 mb-6 md:mb-8 animate-fade-in opacity-60">
+                    <div class="w-6 sm:w-8 h-0.5 bg-custom-primary"></div>
+                    <div class="w-6 sm:w-8 h-0.5 bg-custom-gold"></div>
+                    <div class="w-6 sm:w-8 h-0.5 bg-white"></div>
                 </div>
                 
-                <div class="flex flex-col md:flex-row gap-4 justify-center">
-                    <a href="servicios.html" class="inline-block bg-custom-primary text-custom-dark font-montserrat font-semibold px-8 py-3 rounded-full hover:bg-custom-gold transition-all duration-300 shadow-lg hover:shadow-xl">
+                <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center">
+                    <a href="servicios.html" class="w-full sm:w-auto inline-block bg-custom-primary text-custom-dark font-montserrat font-semibold px-6 sm:px-8 py-3 rounded-full hover:bg-custom-gold transition-all duration-300 shadow-lg hover:shadow-xl text-sm sm:text-base drop-shadow-lg">
                         Explorar Servicios
                     </a>
-                    <a href="contacto.html" class="inline-block bg-white text-custom-dark font-montserrat font-semibold px-8 py-3 rounded-full hover:bg-custom-primary transition-all duration-300 shadow-lg hover:shadow-xl border-2 border-white">
+                    <a href="contacto.html" class="w-full sm:w-auto inline-block bg-white text-custom-dark font-montserrat font-semibold px-6 sm:px-8 py-3 rounded-full hover:bg-custom-primary transition-all duration-300 shadow-lg hover:shadow-xl border-2 border-white text-sm sm:text-base drop-shadow-lg">
                         Solicitar Cotización
                     </a>
                 </div>
@@ -424,5 +634,14 @@
     </a>
     
     <script src="js/main.js"></script>
+    <script>
+        // PANTALLA DE CARGA
+        window.addEventListener('load', function() {
+            const loadingScreen = document.getElementById('loadingScreen');
+            setTimeout(() => {
+                loadingScreen.classList.add('hidden');
+            }, 2500);
+        });
+    </script>
 </body>
 </html>
